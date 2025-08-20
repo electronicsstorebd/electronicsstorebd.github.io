@@ -1,0 +1,22 @@
+.footer div a svg{
+  margin-right: 5px;
+  transform: translateY(15%);
+}
+.footer div li a {
+  all: unset;
+  color: #ccc;
+}
+
+.footer div li {
+    margin-bottom: 20px;
+}
+.footer div a{
+  all: unset;
+  display: block;
+  color: gray;
+  margin-bottom: 15px;
+}
+.footer{
+  position: relative;
+  z-index: 1201;
+}
