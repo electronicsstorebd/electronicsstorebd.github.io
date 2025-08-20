@@ -1,0 +1,402 @@
+* {
+  font-family: Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:root {
+  --color1: #fff;
+  --color2: #000;
+  --min-cart: 280px;
+}
+
+.section {
+  margin-top: 100px;
+  padding: 18px;
+}
+
+.sectionS{
+  min-height: calc(100vh - 135px);
+}
+
+.grid-wrap {
+  /*--gcols: repeat(auto-fill, minmax(var(--min-cart), 1fr));
+  */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-cart), 1fr));
+  /*var(--gcols);*/
+  gap: 18px;
+}
+
+/*
+.grid-wrap[data-cols="1"] {
+  grid-template-columns: repeat(1, minmax(var(--min-cart), 1fr));
+}
+.grid-wrap[data-cols="2"] {
+  grid-template-columns: repeat(2, minmax(var(--min-cart), 1fr));
+}
+.grid-wrap[data-cols="3"] {
+  grid-template-columns: repeat(3, minmax(var(--min-cart), 1fr));
+}
+.grid-wrap[data-cols="4"] {
+  grid-template-columns: repeat(4, minmax(var(--min-cart), 1fr));
+}
+*/
+
+.cart {
+  background: var(--color1);
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+
+.img-frame {
+  height: 190px;
+  background: var(--color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.img-frame img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--color2);
+  color: var(--color1);
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+.cart-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.meta .title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.meta .price {
+  text-align: right;
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--color2);
+  font-size: 13px;
+}
+
+.muted {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  line-clamp: 2;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2);
+  margin: 0 0 1rem 0;
+}
+
+.muted.fancy {
+  position: relative;
+}
+
+.muted.fancy::after {
+  content: '';
+  position: absolute;
+  right: 0.25rem;
+  bottom: 0;
+  background: white;
+  padding-left: 0.25rem;
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color2);
+}
+
+.progress-wrap {
+  margin-top: 6px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #eef2f4;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar>span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #aaa, #000);
+  transition: width .5s ease;
+}
+
+.progress-note {
+  font-size: 12px;
+  color: var(--color2);
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  align-items: center;
+}
+
+.btn {
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid var(--color2);
+  
+}
+
+.btn.primary {
+  background: var(--color2);
+  color: var(--color1);
+  flex: 1;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--muted);
+  min-width: 88px;
+  border-radius: 10px;
+}
+
+.cart-footer {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-footer {
+  flex: 1;
+}
+
+
+/* ============ Floating cart ============ */
+.floating-cart {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1200;
+  background: #111;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  display: flex;
+  gap: 10px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+  transition: transform .18s
+}
+
+.floating-cart .count {
+  background: #ff3b3b;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 800;
+  color: #fff
+}
+
+/* ============ Overlay modals ============ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .45);
+  z-index: 1250;
+  padding: 100px 20px 0px 20px;
+}
+
+.overlay.show {
+  display: flex
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 75vh;
+  overflow: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: all .22s
+}
+
+.overlay.show .modal {
+  transform: none;
+  opacity: 1
+}
+
+.modal header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee
+}
+
+.modal header strong{
+   font-size: 1.8rem;
+ }
+
+.modal .body {
+  padding: 14px
+}
+
+.modal .footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid #eee
+}
+
+/* cart list */
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.cart-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0
+}
+
+.cart-item img {
+  width: 72px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff
+}
+
+.qty-control {
+  display: flex;
+  gap: 8px;
+  align-items: center
+}
+
+.qty-control button {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer
+}
+
+/* checkout summary */
+.summary {
+  border: 1px dashed #eee;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px
+}
+
+label {
+  display: block;
+  margin: 8px 0 6px;
+  font-weight: 700
+}
+
+input[type=text],
+input[type=tel],
+textarea {
+  width: calc(100% - 21px);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd
+}
+
+/* whatsapp button style */
+.wa-btn {
+  all: unset;
+  display: block;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #25D366;
+  color: #fff;
+  font-weight: 800;
+  animation: pulse-once 0.8s ease-in-out 2;
+
+}
+
+@keyframes pulse-once {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); } /* বড় হওয়ার মাপ */
+  100% { transform: scale(1); }
+}
+
+.remove-btn{
+  color: #ff000077;
+  border-color: #ff000050;
+  background: #ff000010;
+}
+
+.close {
+  background: #0000002D;
+}
+
+.showB {
+  display: block;
+  height: 60vh;
+  background: url('/IMG/No_results_found_for_search.png') no-repeat center/ contain ;
+  opacity: .1;
+}
