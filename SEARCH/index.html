@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000">
+  <title>Electronics Store - Search</title>
+  <link rel="shortcut icon" href="/IMG/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/header.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/footer.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/cart.css" type="text/css" media="all" />
+</head>
+
+<body style="margin: 0;">
+  
+  <!--Header  -------------------->
+  <header class="header">
+    <div class="container" style="display:flex">
+      
+      <h2 class="logo"><a style="all:unset;" href="/Electronics-Store">Electronics Store</a></h2>
+      <nav id="nav-menu">
+        <a class="hide" href="/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+          </svg>
+          Home
+        </a>
+        <a class="hide" style="color: var(--matc);background-color: var(--mabc);" href="/SEARCH">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
+          Search
+        </a>
+        <a href="/TOP_SALE">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07" />
+          </svg>
+          Top Sale
+        </a>
+        <a href="/ROBOTICS">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-robot" viewBox="0 0 16 16">
+            <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.6 26.6 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.93.93 0 0 1-.765.935c-.845.147-2.34.346-4.235.346s-3.39-.2-4.235-.346A.93.93 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a25 25 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25 25 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135" />
+            <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5" />
+          </svg>
+          Robotics
+        </a>
+        <a href="/DIY">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" style="transform: scaleX(-1);" viewBox="0 0 16 16">
+            <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5 5 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334" />
+          </svg>
+          DIY
+        </a>
+        <a href="/MICROELECTRONICS">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+            <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+          </svg>
+          Microelectronics 
+        </a>
+      </nav>
+      
+      <div id="hamburger" aria-label="Toggle menu" tabindex="0" role="button">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="s_bar">
+      <input type="search" placeholder="Search products..." aria-label="Search products" />
+      <button aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1.2rem" width="1.2rem" fill="var(--color2)" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+  <div class="section sectionS">
+    <header style="margin-bottom:20px;">
+      <h1 style="margin-bottom: 2px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+        Search
+      </h1>
+      <p style="margin:0; opacity: .8;">Here is your search results:</p>
+    </header>
+    <main class="grid-wrap search" id="product-grid" data-cols="auto">
+    </main>
+  </div>
+  
+  <!--Footer  -------------------->
+  <footer class="footer" style="background:#111; color:#fff; padding:40px 20px 20px 20px; text-align:left;">
+    <div style="display:flex; flex-wrap:wrap; gap:40px;">
+      
+      <!-- Brand Info -->
+      <div style="flex:1; min-width:200px;">
+        <h3>Electronics Store</h3>
+        <p style="color: gray;">Your trusted electronics shop — the best in price, quality, and service.</p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div style="flex:1; min-width:200px;">
+        <h3>Quick Links</h3>
+        <ul style="list-style:none; padding:0;">
+          <li><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
+                <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
+              </svg>Home</a></li>
+          <li><a href="/404"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-fill" viewBox="0 0 16 16">
+                <path d="M5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
+              </svg> Privacy Policy</a></li>
+          <li><a href="/404"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+              </svg>About Us</a></li>
+          
+        </ul>
+      </div>
+      
+      <!-- Contact -->
+      <div style="flex:1; min-width:200px;">
+        <h3>Contact</h3>
+        <a href="https://www.google.com/maps?q= 23.6818337, 90.4797731"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+          </svg> Narayanganj, Dhaka, Bangladesh.</a>
+        <a href="tel:+8801941465875"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+          </svg> +880 1941-465875 </a>
+        <a href="mailto:marufhossainkeyas@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+          </svg> marufhossainkeyas@gmail.com</a>
+      </div>
+    </div>
+    
+    <hr style="border:1px solid #333; margin:20px;">
+    
+    <p style="text-align:center; color:#aaa; margin: 0;">© 2025 Electronics Shop</p>
+  </footer>
+  <button class="floating-cart" id="es-open-cart" title="Open cart" aria-label="Open cart">
+    <span style="font-weight:800">Cart</span>
+    <span class="count" id="es-cart-count">0</span>
+    <span id="es-cart-total">৳0.00</span>
+  </button>
+  
+  <div id="es-cart-overlay" class="overlay" aria-hidden="true" style="display:none;">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Cart Details">
+      <header>
+        <strong>Cart</strong>
+        <button class="btn close" id="es-close-cart">Close</button>
+      </header>
+      <div class="body">
+        <div id="es-cart-empty" style="display:none;text-align:center;color:#666;padding:20px">Cart is empty.</div>
+        <div class="cart-list" id="es-cart-list"></div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Subtotal</div>
+          <div style="font-weight:800" id="es-cart-subtotal">৳0.00</div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="btn" id="es-clear-cart">Clear</button>
+        <button class="btn primary" id="es-proceed-checkout">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="es-checkout-overlay" class="overlay" aria-hidden="true" style="display:none;">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Checkout">
+      <header>
+        <strong>Checkout</strong>
+        <button class="btn close" id="es-close-checkout">Close</button>
+      </header>
+      <div class="body" style="display:flex; flex-wrap:wrap; gap:12px">
+        <div style="flex:1; min-width:200px;">
+          <label>Full name</label>
+          <input id="es-name" type="text" placeholder="Your full name">
+          <label style="margin-top:8px">Phone</label>
+          <input id="es-phone" type="tel" placeholder="01XXXXXXXXX">
+          <label style="margin-top:8px">Address</label>
+          <input id="es-address" list="es-address-list" type="text" placeholder="Street, area, city">
+          <datalist id="es-address-list"></datalist>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn" id="es-save-address">Save address</button>
+            <button class="btn" id="es-back-to-cart">Back to cart</button>
+          </div>
+        </div>
+        <aside style="flex:1; min-width:200px;">
+          <div id="es-checkout-items" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
+          <div class="summary">
+            <div style="display:flex;justify-content:space-between">
+              <div>Items total</div>
+              <div id="es-co-items">৳0.00</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px">
+              <div>Delivery</div>
+              <div id="es-co-delivery">৳0.00</div>
+            </div>
+            <hr style="border:none;border-top:1px solid #eee;margin:10px 0">
+            <div style="display:flex;justify-content:space-between;font-weight:800">
+              <div>Grand total</div>
+              <div id="es-co-grand">৳0.00</div>
+            </div>
+          </div>
+          
+          <!-- WhatsApp styled send button -->
+          <a id="es-whatsapp-send" class="wa-btn" href="#" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:12px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" style="transform: translateY(8%);" viewBox="0 0 16 16">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+            </svg>
+            Send Order on WhatsApp
+          </a>
+        </aside>
+      </div>
+      <div class="footer">
+        <!-- Confirm purchase JS intentionally EMPTY for later integration -->
+        <button class="btn primary" id="es-confirm-purchase">Confirm purchase</button>
+      </div>
+    </div>
+  </div>
+  <script src="/hamburger.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/cart.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    /*function renderProducts(list) {
+
+      const search = document.querySelector('.search');
+      //const sBar = document.querySelector('.s_bar input');
+      const savedArr = JSON.parse(sessionStorage.getItem("searchValueA"));;
+      //const value = sBar.value;
+      //const searchTerm = value.trim().toLowerCase();
+      
+      //const searchProducts = list.filer(product =>
+      //  product.search.some(keyword =>
+      //    keyword.toLowerCase().includes(searchTerm)
+      //  )
+      //);
+      if(!searchProducts[0]) document.querySelector('.section').innerHTML += '<div class="showB"></div>';
+      for (const product of searchProducts) {
+        cartMake(search, product);
+      }
+      cartFtouch(search);
+    }*/
+    function renderProducts(list) {
+  const search = document.querySelector('.search');
+  
+  // sessionStorage থেকে রিকভার করো (যদি না থাকে তো খালি স্ট্রিং)
+  const rawSaved = JSON.parse(sessionStorage.getItem("searchValueA") || "null");
+  
+  // savedArr অ্যারে না হলে string থেকে শব্দ বানাও
+  const savedArr = Array.isArray(rawSaved) ?
+    rawSaved :
+    (typeof rawSaved === 'string' ? rawSaved.trim().split(/\s+/) : []);
+  
+  // normalize: lowercase & discard empty
+  const searchTerms = savedArr.map(t => String(t).toLowerCase().trim()).filter(Boolean);
+  
+  // যদি কোনো সার্চ টার্ম না থাকে, আগের বেসিক আচরণ (বা সব পণ্য দেখাও) — এখানে সবখানা রিটার্ন করে দিলাম
+  if (!searchTerms.length) {
+    // পুরনো কনডিশন অনুযায়ী কিছু করলে এখানে রাখো
+    document.querySelector('.section').innerHTML += '<div class="showB"></div>';
+    return;
+  }
+  
+  // হেয় (product তে কোন ফিল্ডে সার্চ করা হবে সেটা চেক করো — এখানে product.search (array) এবং product.title ও description মিশিয়ে নিচ্ছি)
+  const searchProducts = list.filter(product => {
+    const haystackParts = [];
+    
+    if (Array.isArray(product.search)) haystackParts.push(product.search.join(' '));
+    if (product.title) haystackParts.push(product.title);
+    if (product.description) haystackParts.push(product.description);
+    
+    const hay = haystackParts.join(' ').toLowerCase();
+    
+    // ---------- CHOOSE ONE ----------
+    // 1) OR behaviour: যদি কোনো এক কয়েসও মিলে যায় => true
+    const matchesAny = searchTerms.some(term => hay.includes(term));
+    // return matchesAny;
+    
+    // 2) AND behaviour: সবগুলো শব্দই থাকতে হবে => true
+    const matchesAll = searchTerms.every(term => hay.includes(term));
+    // return matchesAll;
+    // ---------- /CHOOSE ONE ----------
+    
+    // Default: use OR (change to matchesAll for AND)
+    return matchesAny;
+  });
+  
+  // ফলাফল না থাকলে দেখানোর লজিক
+  if (!searchProducts || !searchProducts.length) {
+    document.querySelector('.section').innerHTML += '<div class="showB"></div>';
+    return;
+  }
+  
+  for (const product of searchProducts) {
+    cartMake(search, product);
+  }
+  cartFtouch(search);
+  sessionStorage.setItem('searchValueA', '');
+}
+  </script>
+</body>
+
+</html>
