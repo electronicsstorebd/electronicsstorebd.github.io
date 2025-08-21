@@ -1,6 +1,87 @@
 {
   "products": [
     {
+      "name": "Arduino Uno R3",
+      "ID": 1200,
+      "sold": 0,
+      "available": 0,
+      "price": 850,
+      "description": "Based on the ATmega328P microcontroller <b>1 PIC</b>.",
+      "notice": "Will be available soon in Stoke",
+      "categories": "robotics",
+      "search": ["arduino", "uno", "microcontroller"]
+    },
+    {
+      "name": "TP4056 type B",
+      "ID": 6112,
+      "sold": 0,
+      "available": 3,
+      "price": 20,
+      "description": "Type B3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
+      "notice": "High Demand",
+      "categories": "robotics",
+      "search": ["type B", "bms", "#6112", "tp4056"]
+    },
+    {
+      "name": "Wheel",
+      "ID": 4333,
+      "sold": 0,
+      "available": 2,
+      "price": 60,
+      "description": "3v-9v DC gare motor <b>1 PIC</b>.",
+      "notice": "Limited Stock",
+      "categories": "robotics",
+      "search": ["Wheel", "dc motor", "#4333", "gare"]
+    },
+    {
+      "name": "Car Kit",
+      "ID": 2097,
+      "sold": 0,
+      "available": 0,
+      "price": 1000,
+      "description": "Four gear motor, four wheel, battery holder <b>1 SET</b>.",
+      "notice": "Will be available soon in Stoke",
+      "categories": "robotics topSale",
+      "search": ["car", "#2097", "arduino", "modify"]
+    },
+    
+    
+    
+    {
+      "name": "18650 Battery",
+      "ID": 8650,
+      "sold": 0,
+      "available": 5,
+      "price": 65,
+      "description": "18650 Battery 3.7V Li-ion Rechargeable Battery <b>1 PIC</b>.",
+      "notice": "Average Quality Battery",
+      "categories": "diy",
+      "search": ["18650", "battery", "#8650", "used", "laptop battery", "Rechargeable"]
+    },
+    {
+      "name": "180 DC Motor",
+      "ID": 5180,
+      "sold": 0,
+      "available": 3,
+      "price": 55,
+      "description": "3v-9v Short Shaft 180 DC motor <b>1 PIC</b>.",
+      "notice": "Good Quality Fast Motor",
+      "categories": "diy",
+      "search": ["180", "dc motor", "#5180", "motor", "high speed motor"]
+    },
+    
+    {
+      "name": "Flat DC Motor",
+      "ID": 5335,
+      "sold": 0,
+      "available": 3,
+      "price": 30,
+      "description": "3v-9v flat DC motor  <b>1 PIC</b>.",
+      "notice": "Good Quality",
+      "categories": "diy",
+      "search": ["180", "dc motor", "#5335", "motor", "high speed motor"]
+    },
+    {
       "name": "130 DC Motor",
       "ID": 5130,
       "sold": 0,
@@ -24,29 +105,24 @@
       "search": ["pump", "dc motor", "#5679", "motor", "submersible"]
     },
     
-    {
-      "name": "Flat DC Motor",
-      "ID": 5335,
-      "sold": 0,
-      "available": 3,
-      "price": 30,
-      "description": "3v-9v flat DC motor  <b>1 PIC</b>.",
-      "notice": "Good Quality",
-      "categories": "diy topSale",
-      "search": ["180", "dc motor", "#5335", "motor", "high speed motor"]
-    },
+    
+    
+    
+    
     
     {
-      "name": "180 DC Motor",
-      "ID": 5180,
+      "name": "TP4056 type C",
+      "ID": 6113,
       "sold": 0,
       "available": 3,
-      "price": 55,
-      "description": "3v-9v Short Shaft 180 DC motor <b>1 PIC</b>.",
-      "notice": "Good Quality Fast Motor",
-      "categories": "diy topSale",
-      "search": ["180", "dc motor", "#5180", "motor", "high speed motor"]
+      "price": 20,
+      "description": "Type C 3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
+      "notice": "High Demand",
+      "categories": "diy robotics",
+      "search": ["type c", "bms", "#6113", "tp4056"]
     },
+    
+    
     
     {
       "name": "Gare Motor",
@@ -60,18 +136,21 @@
       "search": ["gare", "dc motor", "#5888", "motor"]
     },
     
-    {
-      "name": "Wheel",
-      "ID": 4333,
-      "sold": 0,
-      "available": 2,
-      "price": 70,
-      "description": "3v-9v DC gare motor <b>1 PIC</b>.",
-      "notice": "Limited Stock",
-      "categories": "robotics topSale",
-      "search": ["Wheel", "dc motor", "#4333", "gare"]
-    },
     
+    
+    
+    
+    {
+      "name": "BC557 NPN Transistor",
+      "ID": 9557,
+      "sold": 0,
+      "available": 20,
+      "price": 5,
+      "description": "BC547 NPN transistor, gain 110, collector current 100 mA, <b>1 PIC</b>.",
+      "notice": "Best Price",
+      "categories": "microelectronics topSale",
+      "search": ["NPN", "#9100", "BC547", "transistor"]
+    },
     {
       "name": "Push Button",
       "ID": 7778,
@@ -82,30 +161,6 @@
       "notice": "High Quality",
       "categories": "microelectronics topSale",
       "search": ["push", "#7778", "button", "12mm", "switch"]
-    },
-    
-    {
-      "name": "TP4056 type B",
-      "ID": 6112,
-      "sold": 0,
-      "available": 3,
-      "price": 20,
-      "description": "Type B3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
-      "notice": "High Demand",
-      "categories": "diy robotics topSale",
-      "search": ["type B", "bms", "#6112", "tp4056"]
-    },
-    
-    {
-      "name": "TP4056 type C",
-      "ID": 6113,
-      "sold": 0,
-      "available": 3,
-      "price": 20,
-      "description": "Type C 3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
-      "notice": "High Demand",
-      "categories": "diy robotics topSale",
-      "search": ["type c", "bms", "#6113", "tp4056"]
     },
     
     {
