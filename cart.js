@@ -257,7 +257,7 @@ function populateCheckout(singleId) {
 
 function buildWhatsAppMessage(singleId) {
   const lines = [];
-  lines.push('আসসালামু আলাইকুম। আমি অর্ডার করতে চাই — খুব আদবসহ:');
+  lines.push('```আসসালামু আলাইকুম। আমি অর্ডার করতে চাই — খুব আদবসহ:```');
   lines.push('');
   lines.push('*Order Details:*');
   lines.push('');
@@ -269,24 +269,25 @@ function buildWhatsAppMessage(singleId) {
     const cart = loadCart();
     items = Object.values(cart).map(it => ({ name: it.name, qty: it.qty, price: it.price }));
   }
-  items.forEach((it, i) => lines.push(`${i+1+'.'} ${it.name}  × ${it.qty} — ${money(it.price * it.qty)}`));
+  items.forEach((it, i) => lines.push(`${i+1+'.'} \`${it.name}\` × \`${it.qty}\` — ${money(it.price * it.qty)}
+`));
   const itemsTotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
   const delivery = itemsTotal > 0 ? 40 : 0;
-  lines.push('');
   lines.push('*-------------------------*');
   lines.push(`Items total: ${money(itemsTotal)}`);
   lines.push(`Delivery: ${money(delivery)}`);
-  lines.push(`Grand total: *${money(itemsTotal + delivery)}*`);
+  lines.push(`Grand total: \`${money(itemsTotal + delivery)}\``);
   lines.push('*-------------------------*');
   lines.push('');
   const name = $('#es-name').value.trim() || '(নাম নেই)';
   const phone = $('#es-phone').value.trim() || '(ফোন নেই)';
   const address = $('#es-address').value.trim() || '(ঠিকানা নেই)';
-  lines.push(`Name: ${name}`);
-  lines.push(`Phone: ${phone}`);
-  lines.push(`Address: ${address}`);
+  lines.push(`*Name:*  \`${name}\``);
+  lines.push(`*Phone:*  ${phone}`);
+  lines.push(`*Address:*
+> \`${address}\``);
   lines.push('');
-  lines.push('আপনি কি কনফার্ম করবেন? ধন্যবাদ।');
+  lines.push('```আপনি কি কনফার্ম করবেন? ধন্যবাদ।```');
   return lines.join('\n');
 }
 
