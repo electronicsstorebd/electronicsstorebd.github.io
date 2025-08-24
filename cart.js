@@ -3,8 +3,8 @@ const CFG = {
   ADDR_KEY: 'es_addresses_v1',
   LAST_NAME_KEY: 'es_last_name',
   LAST_PHONE_KEY: 'es_last_phone',
-  WHATSAPP: '8801941465875', // Bangladesh number: 01941465875 -> E.164 8801941465875
-  IMG_BASE: '/IMG/' // path + <ID>.png
+  WHATSAPP: '+8801872605055', 
+  IMG_BASE: '/IMG/'
 };
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
