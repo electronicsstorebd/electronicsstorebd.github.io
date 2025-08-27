@@ -42,3 +42,29 @@ if (window.location.pathname === '/SEARCH/') {
     sessionStorage.setItem('searchValueN', '');
   }
 }
+
+const contactNumber = '+880 1872-605055';
+const contactMaill = 'officialelectronicsstore@gmail.com';
+const contact = [
+  "Narayanganj, Dhaka, Bangladesh",
+  contactNumber,
+  contactMaill
+];
+const links = [
+  "https://www.facebook.com/officialelectronicsstore",
+  "https://www.instagram.com/officialelectronicsstore",
+  "https://youtube.com/@officialelectronicsstore",
+  "https://wa.me/8801872605055",
+  "/",
+  "/404",
+  "/404",
+  "https://www.google.com/maps?q=23.6818337,90.4797731",
+  "tel:" + contactNumber,
+  "mailto:" + contactMaill
+];
+document.querySelectorAll('.addI').forEach((e, n) => {
+  e.innerHTML = contact[n];
+});
+document.querySelectorAll('.link').forEach((e, n) => {
+  e.href = links[n];
+});
