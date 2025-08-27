@@ -13,12 +13,13 @@
   margin-top: 14px;
 }
 
-.footer {
+.footer:has(hr) {
   background: var(--color2);
   color: var(--color1);
   padding: 40px 20px;
   position: relative;
-  z-index: 1450;
+  z-index: 1201;
+  box-shadow: 0 0 1rem var(--color1);
 }
 
 .footer .wrap {
