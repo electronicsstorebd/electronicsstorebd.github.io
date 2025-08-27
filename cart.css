@@ -196,7 +196,7 @@
 
 .btn.ghost {
   background: transparent;
-  color: var(--muted);
+  color: var(--color2);
   min-width: 88px;
   border-radius: 10px;
 }
