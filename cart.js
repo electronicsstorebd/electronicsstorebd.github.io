@@ -402,8 +402,8 @@ function attachToExistingButtons() {
       populateCheckout(id);
       $('#es-checkout-overlay').style.display = 'flex';
       $('#es-checkout-overlay').classList.add('show');
+      isSingleBuy = true;
     });
-    isSingleBuy = true;
   });
 }
 
