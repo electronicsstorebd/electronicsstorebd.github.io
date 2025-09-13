@@ -239,7 +239,7 @@ function populateCheckout(singleId) {
     container.appendChild(row);
   });
   const itemsTotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = itemsTotal > 0 ? 40 : 0;
+  const delivery = itemsTotal > 0 ? 70 : 0;
   $('#es-co-items').textContent = money(itemsTotal);
   $('#es-co-delivery').textContent = money(delivery);
   $('#es-co-grand').textContent = money(itemsTotal + delivery);
