@@ -96,8 +96,8 @@
     {
       "name": "Pump DC Motor",
       "ID": 5679,
-      "sold": 0,
-      "available": 3,
+      "sold": 1,
+      "available": 2,
       "price": 50,
       "description": "DC 3v-6v Mini Submersible Pump 120 L/H Ultra-Quiet <b>1 PIC</b>.",
       "notice": "Limited Stock",
