@@ -6,7 +6,7 @@
       "sold": 0,
       "available": 0,
       "price": 850,
-      "description": "Based on the ATmega328P microcontroller <b>1 PIC</b>.",
+      "description": "Based on the ATmega328P microcontroller, <b>1 PIC</b>.",
       "notice": "Will be available soon in Stoke",
       "categories": "robotics",
       "search": ["arduino", "uno", "microcontroller"]
@@ -17,7 +17,7 @@
       "sold": 0,
       "available": 3,
       "price": 20,
-      "description": "Type B3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
+      "description": "Type B3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
       "notice": "High Demand",
       "categories": "robotics",
       "search": ["type B", "bms", "#6112", "tp4056"]
@@ -28,7 +28,7 @@
       "sold": 0,
       "available": 2,
       "price": 60,
-      "description": "Wheel for 3v-9v DC gare motor <b>1 PIC</b>.",
+      "description": "Wheel for 3v-9v DC gare motor, <b>1 PIC</b>.",
       "notice": "Limited Stock",
       "categories": "robotics",
       "search": ["Wheel", "dc motor", "#4333", "gare"]
@@ -39,7 +39,7 @@
       "sold": 0,
       "available": 0,
       "price": 1000,
-      "description": "Four gear motor, four wheel, battery holder <b>1 SET</b>.",
+      "description": "Four gear motor, four wheel, battery holder, <b>1 SET</b>.",
       "notice": "Will be available soon in Stoke",
       "categories": "robotics topSale",
       "search": ["car", "#2097", "arduino", "modify"]
@@ -53,7 +53,7 @@
       "sold": 0,
       "available": 5,
       "price": 65,
-      "description": "18650 Battery 3.7V Li-ion Rechargeable Battery <b>1 PIC</b>.",
+      "description": "18650 Battery 3.7V Li-ion Rechargeable Battery, <b>1 PIC</b>.",
       "notice": "Average Quality Battery",
       "categories": "diy",
       "search": ["18650", "battery", "#8650", "used", "laptop battery", "Rechargeable"]
@@ -64,7 +64,7 @@
       "sold": 0,
       "available": 3,
       "price": 55,
-      "description": "3v-9v Short Shaft 180 DC motor <b>1 PIC</b>.",
+      "description": "3v-9v Short Shaft 180 DC motor, <b>1 PIC</b>.",
       "notice": "Good Quality Fast Motor",
       "categories": "diy",
       "search": ["180", "dc motor", "#5180", "motor", "high speed motor"]
@@ -76,7 +76,7 @@
       "sold": 0,
       "available": 3,
       "price": 30,
-      "description": "3v-9v flat DC motor  <b>1 PIC</b>.",
+      "description": "3v-9v flat DC motor,  <b>1 PIC</b>.",
       "notice": "Good Quality",
       "categories": "diy",
       "search": ["180", "dc motor", "#5335", "motor", "high speed motor"]
@@ -87,7 +87,7 @@
       "sold": 0,
       "available": 3,
       "price": 15,
-      "description": "3v-9v 130 DC motor <b>1 PIC</b>.",
+      "description": "3v-9v 130 DC motor, <b>1 PIC</b>.",
       "notice": "Average Quality Motor",
       "categories": "diy topSale",
       "search": ["130", "dc motor", "#5130", "motor", "normal motor"]
@@ -99,7 +99,7 @@
       "sold": 1,
       "available": 2,
       "price": 50,
-      "description": "DC 3v-6v Mini Submersible Pump 120 L/H Ultra-Quiet <b>1 PIC</b>.",
+      "description": "DC 3v-6v Mini Submersible Pump 120 L/H Ultra-Quiet, <b>1 PIC</b>.",
       "notice": "Limited Stock",
       "categories": "diy topSale",
       "search": ["pump", "dc motor", "#5679", "motor", "submersible"]
@@ -116,7 +116,7 @@
       "sold": 0,
       "available": 3,
       "price": 20,
-      "description": "Type C 3.7v battery charger and Auto cut BMS <b>1 PIC</b>.",
+      "description": "Type C 3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
       "notice": "High Demand",
       "categories": "diy robotics",
       "search": ["type c", "bms", "#6113", "tp4056"]
@@ -130,7 +130,7 @@
       "sold": 0,
       "available": 2,
       "price": 70,
-      "description": "3v-9v DC gare motor <b>1 PIC</b>.",
+      "description": "3v-9v DC gare motor, <b>1 PIC</b>.",
       "notice": "Limited Stock",
       "categories": "robotics topSale",
       "search": ["gare", "dc motor", "#5888", "motor"]
@@ -157,7 +157,7 @@
       "sold": 0,
       "available": 5,
       "price": 10,
-      "description": "Push button switch 4 pin (12mm*12mm) <b>1 PIC</b>.",
+      "description": "Push button switch 4 pin (12mm*12mm), <b>1 PIC</b>.",
       "notice": "High Quality",
       "categories": "microelectronics topSale",
       "search": ["push", "#7778", "button", "12mm", "switch"]
@@ -169,7 +169,7 @@
       "sold": 0,
       "available": 100,
       "price": 5,
-      "description": "Small red LED with 330Ω resistance protection <b>1 PIC</b>.",
+      "description": "Small red LED with 330Ω resistance protection, <b>1 PIC</b>.",
       "notice": "High Quality LED",
       "categories": "microelectronics topSale",
       "search": ["small", "330Ω", "#8111", "led"]
@@ -181,7 +181,7 @@
       "sold": 0,
       "available": 100,
       "price": 5,
-      "description": "Small white LED with 330Ω resistance protection <b>1 PIC</b>.",
+      "description": "Small white LED with 330Ω resistance protection, <b>1 PIC</b>.",
       "notice": "High Quality LED",
       "categories": "microelectronics topSale",
       "search": ["small", "330Ω", "#8114", "white", "led"]
