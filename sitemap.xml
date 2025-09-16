@@ -4,5 +4,12 @@
     <loc>https://electronicsstorebd.github.io/</loc>
     <priority>1.0</priority>
   </url>
-  <!-- অন্যান্য পেইজগুলো যোগ করো -->
+  <url>
+    <loc>https://electronicsstorebd.github.io/sitemap.xml</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://electronicsstorebd.github.io/robots.txt</loc>
+    <priority>1.0</priority>
+  </url>
 </urlset>
