@@ -1,6 +1,6 @@
 {
   "name": "Electronics Store",
-  "short_name": "ES",
+  "short_name": "Electronics Store",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
