@@ -68,3 +68,22 @@ document.querySelectorAll('.addI').forEach((e, n) => {
 document.querySelectorAll('.link').forEach((e, n) => {
   e.href = links[n];
 });
+
+function getSearchId() {
+  const url = location.href;
+  
+  if (url.includes("/SEARCH")) {
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    
+    if (id && /^\d{4}$/.test(id)) {
+      return id;
+    }
+  }
+  return null;
+}
+const val = getSearchId();
+if (val) {
+  alert(val);
+  // এখানে আপনার ফাংশন চালাবেন val দিয়ে
+}
