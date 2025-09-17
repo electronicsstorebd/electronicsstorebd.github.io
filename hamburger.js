@@ -84,6 +84,5 @@ function getSearchId() {
 }
 const val = getSearchId();
 if (val) {
-  alert(val);
-  // এখানে আপনার ফাংশন চালাবেন val দিয়ে
+    sBar.value = `#${val}`;
 }
