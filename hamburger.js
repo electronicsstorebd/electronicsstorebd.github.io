@@ -27,19 +27,36 @@ function runSearch() {
   window.location.href = '/SEARCH';
 }
 
+function getSearchId() {
+  const url = location.href;
+  
+  if (url.includes("/SEARCH")) {
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    
+    if (id && /^\d{4}$/.test(id)) {
+      return id;
+    }
+  }
+  return null;
+}
+
 sBtn.addEventListener('click', runSearch);
 
 sBar.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     runSearch();
-  }
+  } 
 });
 
 if (window.location.pathname === '/SEARCH/') {
   const savedValue = sessionStorage.getItem('searchValueN');
+  const val = getSearchId();
   if (savedValue) {
     sBar.value = savedValue;
     sessionStorage.setItem('searchValueN', '');
+  }else if (val) {
+  sBar.value = `#${val}`;
   }
 }
 
@@ -68,21 +85,3 @@ document.querySelectorAll('.addI').forEach((e, n) => {
 document.querySelectorAll('.link').forEach((e, n) => {
   e.href = links[n];
 });
-
-function getSearchId() {
-  const url = location.href;
-  
-  if (url.includes("/SEARCH")) {
-    const params = new URLSearchParams(location.search);
-    const id = params.get("id");
-    
-    if (id && /^\d{4}$/.test(id)) {
-      return id;
-    }
-  }
-  return null;
-}
-const val = getSearchId();
-if (val) {
-    sBar.value = `#${val}`;
-}
