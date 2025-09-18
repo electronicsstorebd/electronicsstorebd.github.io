@@ -35,6 +35,7 @@ function getSearchId() {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
     
+    // শুধু ৪ সংখ্যার হলে valid
     if (id && /^\d{4}$/.test(id)) {
       return id;
     }
@@ -51,12 +52,13 @@ sBar.addEventListener('keydown', (e) => {
   }
 });
 
-if (window.location.pathname === '/SEARCH/') {
+if (window.location.pathname.startsWith('/SEARCH')) {
   if (savedValue) {
     sBar.value = savedValue;
     sessionStorage.setItem('searchValueN', '');
   }
 }
+
 
 const contactNumber = '+880 1872-605055';
 const contactMaill = 'officialelectronicsstore@gmail.com';
@@ -84,11 +86,11 @@ document.querySelectorAll('.link').forEach((e, n) => {
   e.href = links[n];
 });
 
-
 const val = getSearchId();
-window.onload = ()=> {
+
+window.onload = () => {
   if (val && !savedValue) {
     sBar.value = '';
-    sessionStorage.setItem("searchValueA", `#${val}`);
+    sessionStorage.setItem("searchValueA", JSON.stringify(val));
   }
-}
+};
