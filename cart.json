@@ -9,7 +9,7 @@
       "description": "Based on the ATmega328P microcontroller, <b>1 PIC</b>.",
       "notice": "Will be available soon in Stoke",
       "categories": "robotics",
-      "search": ["arduino", "uno", "microcontroller"]
+      "search": ["arduino", "uno", "#1200", "microcontroller"]
     },
     {
       "name": "TP4056 type B",
@@ -17,7 +17,7 @@
       "sold": 0,
       "available": 3,
       "price": 20,
-      "description": "Type B3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
+      "description": "Type B 3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
       "notice": "High Demand",
       "categories": "robotics",
       "search": ["type B", "bms", "#6112", "tp4056"]
