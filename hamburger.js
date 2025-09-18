@@ -1,5 +1,6 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
+const savedValue = sessionStorage.getItem('searchValueN');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
@@ -41,22 +42,19 @@ function getSearchId() {
   return null;
 }
 
+
 sBtn.addEventListener('click', runSearch);
 
 sBar.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     runSearch();
-  } 
+  }
 });
 
 if (window.location.pathname === '/SEARCH/') {
-  const savedValue = sessionStorage.getItem('searchValueN');
-  const val = getSearchId();
   if (savedValue) {
     sBar.value = savedValue;
     sessionStorage.setItem('searchValueN', '');
-  }else if (val) {
-  sBar.value = `#${val}`;
   }
 }
 
@@ -85,3 +83,12 @@ document.querySelectorAll('.addI').forEach((e, n) => {
 document.querySelectorAll('.link').forEach((e, n) => {
   e.href = links[n];
 });
+
+
+const val = getSearchId();
+window.onload = ()=> {
+  if (val && !savedValue) {
+    sBar.value = '';
+    sessionStorage.setItem("searchValueA", `#${val}`);
+  }
+}
