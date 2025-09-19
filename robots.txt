@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://electronicsstorebd.github.io/sitemap.xml
+
+host: https://electronicsstorebd.github.io
+sitemap: https://electronicsstorebd.github.io/sitemap.xml
+sitemap: http://electronicsstorebd.github.io/sitemap.xml
