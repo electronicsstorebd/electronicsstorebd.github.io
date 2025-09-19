@@ -1,0 +1,477 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Electronics Store",
+  "url": "https://electronicsstorebd.github.io/",
+  "telephone": "+8801872605055",
+  "openingHours": "Mo-Su 00:00-23:59",
+  "description": "Your Trusted Electronics Shop — The Best in Price, Quality, and Service.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "MFJH+MPF, Pagla Bhuigor Rd, Dhaka, Bangladesh",
+    "addressLocality": "Narayanganj",
+    "addressRegion": "Dhaka Division",
+    "postalCode": "1400",
+    "addressCountry": "BD"
+  },
+  "areaServed": [
+  {
+    "@type": "AdministrativeArea",
+    "name": "Bagerhat"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Bandarban"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Barguna"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Barisal"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Bhola"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Bogra"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Brahmanbaria"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Chandpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Chattogram"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Chuadanga"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Comilla"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Cox's Bazar"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Dhaka"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Dinajpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Faridpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Feni"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Gaibandha"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Gazipur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Gopalganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Habiganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Jamalpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Jessore"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Jhalokathi"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Jhenaidah"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Khagrachhari"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Khulna"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Kishoreganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Kurigram"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Kushtia"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Lakshmipur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Lalmonirhat"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Madaripur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Magura"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Manikganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Meherpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Moulvibazar"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Munshiganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Mymensingh"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Naogaon"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Narail"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Narayanganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Narsingdi"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Natore"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Netrakona"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Nilphamari"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Noakhali"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Pabna"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Panchagarh"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Patuakhali"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Pirojpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Rajbari"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Rajshahi"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Rangamati"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Rangpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Satkhira"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Shariatpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Sherpur"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Sirajganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Sunamganj"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Sylhet"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Tangail"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Thakurgaon"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Joypurhat"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Narshingdi"
+  },
+  {
+    "@type": "AdministrativeArea",
+    "name": "Chapainawabganj"
+  }],
+  
+  "alternateName": [
+    "Electronics Store",
+    "electronics store",
+    "ElectronicsStore",
+    "electronicsstorebd",
+    "ElectronicsStoreBD"
+  ],
+  
+  "logo": "https://electronicsstorebd.github.io/IMG/favicon.png",
+  "image": "https://electronicsstorebd.github.io/IMG/og-image.png",
+  "keywords": [
+    "arduino",
+    "motor",
+    "led",
+    "resistor",
+    "capacitor",
+    "transistor",
+    "battery",
+    "charger",
+    "power supply",
+    "breadboard",
+    "jumper wire",
+    "module",
+    "sensor",
+    "relay",
+    "switch",
+    "robotics",
+    "diy",
+    "electronics kit",
+    "microelectronics",
+    "raspberry pi",
+    "esp8266",
+    "esp32",
+    "development board",
+    "lcd display",
+    "oled display",
+    "pcb",
+    "soldering",
+    "electronics tools",
+    "Electronics Store",
+    "electronics store",
+    "ElectronicsStore",
+    "electronicsstorebd",
+    "ElectronicsStoreBD"
+  ],
+  "publisher": {
+    "@type": "Store",
+    "name": "ElectronicsStoreBD",
+    "url": "https://electronicsstorebd.github.io/"
+  },
+  "inLanguage": ["bn", "en"],
+  "sameAs": [
+    "https://www.facebook.com/officialelectronicsstore",
+    "https://www.instagram.com/officialelectronicsstore",
+    "https://youtube.com/@officialelectronicsstore"
+  ],
+  "mainEntity": [
+  {
+    "@type": "Product",
+    "name": "Arduino Uno R3",
+    "sku": "1200",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=1200",
+    "description": "Based on the ATmega328P microcontroller, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "TP4056 type B",
+    "sku": "6112",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=6112",
+    "description": "Type B3.7v battery charger and Auto cut BMS, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Wheel",
+    "sku": "4333",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=4333",
+    "description": "3v-9v DC gare motor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Car Kit",
+    "sku": "2097",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=2097",
+    "description": "Four gear motor, four wheel, battery holder, 1 SET."
+  },
+  {
+    "@type": "Product",
+    "name": "18650 Battery",
+    "sku": "8650",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=8650",
+    "description": "18650 Battery 3.7V Li-ion Rechargeable Battery, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "180 DC Motor",
+    "sku": "5180",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=5180",
+    "description": "3v-9v Short Shaft 180 DC motor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Flat DC Motor",
+    "sku": "5335",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=5335",
+    "description": "3v-9v flat DC motor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "130 DC Motor",
+    "sku": "5130",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=5130",
+    "description": "3v-9v 130 DC motor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Pump DC Motor",
+    "sku": "5679",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=5679",
+    "description": "DC 3v-6v Mini Submersible Pump 120 L/H Ultra-Quiet, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "TP4056 type C",
+    "sku": "6113",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=6113",
+    "description": "Type C 3.7v battery charger and Auto cut BMS, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Gare Motor",
+    "sku": "5888",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=5888",
+    "description": "3v-9v DC gare motor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "BC557 NPN Transistor",
+    "sku": "9557",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=9557",
+    "description": "BC547 NPN transistor, gain 110, collector current 100 mA, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "Push Button",
+    "sku": "7778",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=7778",
+    "description": "Push button switch 4 pin (12mm*12mm), 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "RED LED & 330Ω",
+    "sku": "8111",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=8111",
+    "description": "Small red LED with 330Ω resistance protection, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "WHITE LED & 330Ω",
+    "sku": "8114",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=8114",
+    "description": "Small white LED with 330Ω resistance protection, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "5mm RED LED",
+    "sku": "8101",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=8101",
+    "description": "Small red LED 5mm, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "5mm WHITE LED",
+    "sku": "8104",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=8104",
+    "description": "Small white LED 5mm, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "330Ω Resistor",
+    "sku": "9330",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=9330",
+    "description": "330 Ohm 1/2 Watt Resistor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "1kΩ Resistor",
+    "sku": "9001",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=9001",
+    "description": "1k Ohm 1/2 Watt Resistor, 1 PIC."
+  },
+  {
+    "@type": "Product",
+    "name": "100kΩ Resistor",
+    "sku": "9100",
+    "url": "https://electronicsstorebd.github.io/SEARCH?id=9100",
+    "description": "100k Ohm 1/2 Watt Resistor, 1 PIC."
+  }]
+
+}
