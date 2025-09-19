@@ -355,6 +355,7 @@ async function handleLongPress(id) {
   } else {
     copyToClipboard(link).then(e => {
       if (!e) alert('Please use a better browser2.');
+      else showToast('Link Copied!');
     });
   }
 }
