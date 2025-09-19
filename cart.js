@@ -321,6 +321,43 @@ function saveAddressAndContact() {
   populateCheckout(window.SINGLE_BUY || null);
   showToast('Address Saved Locally');
 }
+let pressTimer;
+
+async function copyToClipboard(value) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      document.body.appendChild(textarea);
+      textarea.select();
+      const success = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      return success;
+    }
+  } catch (e) {
+    return false;
+  }
+}
+
+async function handleLongPress(id) {
+  if (navigator.vibrate) navigator.vibrate(80);
+  
+  const link = `https://electronicsstorebd.github.io/SEARCH?id=${id}`;
+  if (navigator.share) {
+    try {
+      await navigator.share({ url: link });
+    } catch (err) {
+      return false;
+    }
+  } else {
+    copyToClipboard(link).then(e => {
+      if (!e) alert('Please use a better browser2.');
+    });
+  }
+}
 
 $('#es-open-cart').addEventListener('click', () => {
   $('#es-cart-overlay').style.display = 'flex';
@@ -405,8 +442,24 @@ function attachToExistingButtons() {
       isSingleBuy = true;
     });
   });
+  $$('.cart').forEach(btn => {
+    // --- Mobile Touch ---
+    btn.addEventListener('touchstart', () => {
+      pressTimer = setTimeout(() => handleLongPress(btn.dataset.id), 600);
+    });
+    btn.addEventListener('touchend', () => clearTimeout(pressTimer));
+    btn.addEventListener('touchmove', () => clearTimeout(pressTimer));
+    
+    // --- Desktop Mouse ---
+    btn.addEventListener('mousedown', () => {
+      pressTimer = setTimeout(() => handleLongPress(btn.dataset.id), 600);
+    });
+    btn.addEventListener('mouseup', () => clearTimeout(pressTimer));
+    btn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+  });
 }
-
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
 (function bootstrap() {
   fetch('/cart.json').then(r => r.json()).then(data => {
     const list = Array.isArray(data) ? data : (data.products || []);
