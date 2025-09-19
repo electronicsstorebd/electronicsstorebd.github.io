@@ -1,1 +1,2 @@
-# electronicsstorebd.github.io
+# NAME : Electronics Store
+# URL : electronicsstorebd.github.io
