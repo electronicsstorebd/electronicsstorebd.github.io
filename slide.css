@@ -1,0 +1,169 @@
+/* ======= Slider styles (professional, responsive) ======= */
+:root {
+  --slider-height: clamp(220px, 34vh, 520px);
+  --dot-size: 10px;
+  --accent: #000;
+  /* customize */
+  --bg: #0f172a;
+  --transition: 450ms cubic-bezier(.22, .9, .3, 1);
+}
+
+.auto-slider {
+  position: relative;
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 3px 16px rgba(0,0,0, 0.20);
+  overflow: visible;
+  --gap: 8px;
+  margin-top: 90px;
+  transform: translateY(70px) scale(0.9);
+}
+
+/* viewport masks overflow and provides rounded corners */
+.slider-viewport {
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* track uses flex row to align slides */
+.slider-track {
+  display: flex;
+  will-change: transform;
+  transition: transform var(--transition);
+  touch-action: pan-y;
+}
+
+/* each slide */
+.slide {
+  min-width: 100%;
+  margin: 0;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+  display: block;
+  height: var(--slider-height);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 30%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  vertical-align: middle;
+  -webkit-user-drag: none;
+}
+
+/* overlay for subtle text area or visual polish */
+.slider-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+/* controls */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  color: #ffffffaa;
+  font-weight: 700;
+  cursor: none;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 160ms ease, background 180ms;
+}
+
+.slider-btn:hover {
+  transform: translateY(-50%) scale(1.03);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+/* dots */
+.slider-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 30;
+}
+
+.slider-dots button {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.28);
+  padding: 0;
+  cursor: none;
+  transform-origin: center;
+  transition: transform 180ms, background 180ms;
+}
+
+.slider-dots button[aria-selected="true"] {
+  background: var(--accent);
+  transform: scale(1.25);
+  box-shadow: 0 6px 12px rgba(6, 182, 212, 0.18), 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+/* accessibility focus */
+.slider-btn:focus,
+.slider-dots button:focus {
+  outline: 3px solid rgba(0, 0, 0, 0.14);
+  outline-offset: 3px;
+}
+
+/* responsive tweaks */
+@media (max-width:720px) {
+  .slider-btn {
+    width: 38px;
+    height: 38px;
+  }
+  
+  :root {
+    --slider-height: clamp(180px, 36vh, 380px);
+  }
+}
+
+@media (min-width:1300px) {
+  :root {
+    --slider-height: clamp(300px, 36vh, 620px);
+  }
+}
+
+/* reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .slider-track {
+    transition: none !important;
+  }
+  
+  .slider-btn,
+  .slider-dots button {
+    transition: none !important;
+    transform: none !important;
+  }
+}
