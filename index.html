@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/header.css" type="text/css" media="all" />
   <link rel="stylesheet" href="/footer.css" type="text/css" media="all" />
   <link rel="stylesheet" href="/cart.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/slide.css" type="text/css" media="all" />
 
   <link rel="manifest" href="/manifest.json">
 
@@ -575,6 +576,40 @@
       </button>
     </div>
   </header>
+
+    <!-- ====== Auto Image Slider (drop-in part) ====== -->
+  <section class="auto-slider" aria-roledescription="carousel" aria-label="Image carousel">
+    <div class="slider-viewport">
+      <div class="slider-track">
+        <!-- Slide items: change src/alt as needed -->
+        <figure class="slide"><img src="/IMG/5888.png" alt="Scenic view 1" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/5679.png" alt="Scenic view 2" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/6112.png" alt="Scenic view 3" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/6113.png" alt="Scenic view 4" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/9100.png" alt="Scenic view 5" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/9330.png" alt="Scenic view 6" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/9001.png" alt="Scenic view 7" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/7778.png" alt="Scenic view 8" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/8650.png" alt="Scenic view 9" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/5130.png" alt="Scenic view 10" loading="lazy"></figure>
+      </div>
+      <!-- Gradient overlay + caption area (optional) -->
+      <div class="slider-overlay" aria-hidden="true"></div>
+    </div>
+    
+    <!-- Controls -->
+    <button class="slider-btn prev" aria-label="Previous slide"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+      </svg></button>
+    <button class="slider-btn next" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+      </svg></button>
+    
+    <!-- Dots -->
+    <div class="slider-dots" role="tablist" aria-label="Slide dots"></div>
+  </section>
+  <script src="slide.js"></script>
+  <!-- ====== End slider part ====== -->
   
   <div class="section">
     <header style="margin-bottom:20px;">
