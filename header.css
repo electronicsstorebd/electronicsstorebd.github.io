@@ -23,6 +23,7 @@
 
 .logo {
   color: var(--color1);
+  transform: translateX(-3px);
 }
 
 nav {
