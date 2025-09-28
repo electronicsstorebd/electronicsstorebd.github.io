@@ -348,7 +348,7 @@ async function handleLongPress(id) {
   const link = `https://electronicsstorebd.github.io/SEARCH?id=${id}`;
   if (navigator.share) {
     try {
-      await navigator.share({ url: link });
+      await navigator.share({ title: 'Product Link', url: link });
     } catch (err) {
       return false;
     }
