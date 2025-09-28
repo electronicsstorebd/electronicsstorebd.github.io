@@ -7,6 +7,7 @@ const CFG = {
   IMG_BASE: '/IMG/'
 };
 let isSingleBuy = false;
+let deliveryPrice = 80;
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 const money = n => '৳' + Number(n || 0).toFixed(2);
@@ -239,7 +240,7 @@ function populateCheckout(singleId) {
     container.appendChild(row);
   });
   const itemsTotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = itemsTotal > 0 ? 80 : 0;
+  const delivery = itemsTotal > 0 ? deliveryPrice : 0;
   $('#es-co-items').textContent = money(itemsTotal);
   $('#es-co-delivery').textContent = money(delivery);
   $('#es-co-grand').textContent = money(itemsTotal + delivery);
@@ -278,7 +279,7 @@ function buildWhatsAppMessage(singleId) {
   items.forEach((it, i) => lines.push(`${i+1+'.'} \`${it.name}\` × \`${it.qty}\` — ${money(it.price * it.qty)}
 `));
   const itemsTotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-  const delivery = itemsTotal > 0 ? 80 : 0;
+  const delivery = itemsTotal > 0 ? deliveryPrice : 0;
   lines.push('*-------------------------*');
   lines.push(`Items total: ${money(itemsTotal)}`);
   lines.push(`Delivery: ${money(delivery)}`);
@@ -472,3 +473,126 @@ document.addEventListener("dragstart", e => e.preventDefault());
 })();
 updateFloating();
 renderCart();
+
+(function() {
+  const infoBtn = document.getElementById('infoBtn');
+  let popup = null;
+  let lastSelected = null;
+  
+  const options = [
+    { id: 'narayanganj', name: 'Inside of Narayanganj', price: 70 },
+    { id: 'dhaka', name: 'Inside of Dhaka', price: 110 },
+    { id: 'rest', name: 'All over Bangladesh', price: 130 }
+  ];
+  
+  function createPopup() {
+    const el = document.createElement('div');
+    el.className = 'info-popup';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    
+    el.innerHTML = `
+          <div class="info-header">
+            <div class="info-title">Delivery charge info</div>
+            <button class="icon-btn" id="closePopup" aria-label="close">✕</button>
+          </div>
+          <div class="info-desc">Choose a delivery zone to see the charge. Select and confirm.</div>
+          <form id="zoneForm">
+            <div class="zone">
+              ${options.map(opt => `
+                <label class="zone-item" for="${opt.id}">
+                  <input type="radio" name="delivery_zone" id="${opt.id}" value="${opt.price}" ${lastSelected === opt.id ? 'checked' : ''}>
+                  <div class="zone-meta">
+                    <div class="zone-name">${opt.name}</div>
+                    <div class="zone-price">Tk ${opt.price}</div>
+                  </div>
+                </label>
+              `).join('')}
+            </div>
+          </form>
+
+          <div class="actions">
+            <div class="selected-price">Selected: Tk <span id="selectedValue">${lastSelected ? options.find(o=>o.id===lastSelected).price : '-'}</span></div>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button class="btn ghost" id="closeBtn">Cancel</button>
+              <button class="btn primary" id="confirmBtn">Confirm</button>
+            </div>
+          </div>
+        `;
+    
+    setTimeout(() => {
+      el.querySelectorAll('input[name="delivery_zone"]').forEach(r => {
+        r.addEventListener('change', onRadioChange);
+      });
+      el.querySelector('#confirmBtn').addEventListener('click', onConfirm);
+      el.querySelector('#closeBtn').addEventListener('click', removePopup);
+      el.querySelector('#closePopup').addEventListener('click', removePopup);
+      document.addEventListener('keydown', onKeyDown);
+    }, 0);
+    
+    return el;
+  }
+  
+  function onRadioChange(e) {
+    const val = e.target.value;
+    const span = popup.querySelector('#selectedValue');
+    if (span) span.textContent = val;
+  }
+  
+  function onConfirm(e) {
+    e.preventDefault();
+    let pPrice = parseFloat($('#es-co-grand').textContent.replace(/[^\d.]/g, '')) - deliveryPrice;
+    const checked = popup.querySelector('input[name="delivery_zone"]:checked');
+    deliveryPrice = checked ? parseFloat(checked.value) : 0;
+    $('#es-co-delivery').textContent = money(deliveryPrice);
+    $('#es-co-grand').textContent = money(pPrice + deliveryPrice);
+    if (checked) {
+      lastSelected = checked.id;
+      showToast(`Selected delivery charge: Tk ${checked.value}`);
+    }
+    removePopup();
+  }
+  function onKeyDown(e) { if (e.key === 'Escape') removePopup(); }
+  
+  function removePopup() {
+    if (!popup) return;
+    document.removeEventListener('keydown', onKeyDown);
+    popup.remove();
+    popup = null;
+  }
+  
+  function openPopupNear(target) {
+    removePopup();
+    popup = createPopup();
+    document.body.appendChild(popup);
+    
+    const rect = target.getBoundingClientRect();
+    const pw = popup.offsetWidth;
+    const ph = popup.offsetHeight;
+    const margin = 10;
+    
+    let top = rect.bottom + margin;
+    let left = rect.right - pw;
+    
+    if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+    if (left < 8) left = 8;
+    if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
+    if (top < 8) top = 8;
+    
+    popup.style.top = top + 'px';
+    popup.style.left = left + 'px';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (!popup) return;
+    if (popup.contains(e.target)) return;
+    if (infoBtn.contains(e.target)) return;
+    removePopup();
+  });
+  
+  infoBtn.addEventListener('click', function(e) {
+    if (popup) { removePopup(); return; }
+    openPopupNear(infoBtn);
+  });
+  
+})();
