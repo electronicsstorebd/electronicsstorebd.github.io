@@ -24,6 +24,7 @@
 .logo {
   color: var(--color1);
   transform: translateX(-3px);
+  font-size: 28px;
 }
 
 nav {
