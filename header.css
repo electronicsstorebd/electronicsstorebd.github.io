@@ -5,6 +5,7 @@
 
 .header {
   background: var(--color2);
+  background: linear-gradient(220deg, rgba(0, 0, 0, 1) 35%, rgba(46, 46, 46, 1) 51%, rgba(42, 42, 42, 1) 56%, rgba(38, 38, 38, 1) 61%, rgba(0, 0, 0, 1) 86%);
   padding-bottom: 0.83em;
   position: fixed;
   width: 100%;
