@@ -572,7 +572,7 @@ renderCart();
     const margin = 10;
     
     let top = rect.bottom + margin;
-    let left = rect.right - pw;
+    let left = rect.left + (rect.width / 2) - (pw / 2);
     
     if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
     if (left < 8) left = 8;
