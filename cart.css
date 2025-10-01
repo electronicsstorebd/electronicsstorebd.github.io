@@ -506,7 +506,7 @@ label.zone-item:hover {
   .info-popup {
     left: 50% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1) !important;
     min-width: 88%;
     max-width: 92%
   }
