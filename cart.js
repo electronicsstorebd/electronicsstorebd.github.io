@@ -583,33 +583,110 @@ renderCart();
     popup.style.left = left + 'px';
   }
   */
-  function openPopupNear(target) {
-  removePopup();
+  // Call removePopup() to fully remove previous popup including cleanup
+// createPopup() must return an HTMLElement (the popup) but DO NOT append it yet.
+
+function openPopupNear(target) {
+  // remove old
+  removePopup && removePopup();
+
+  // create and set base responsive styles BEFORE appending so browser can measure correctly
   popup = createPopup();
-  
-  // important fix for small screen
-  popup.style.position = "fixed"; // relative to viewport
-  popup.style.maxWidth = "calc(100vw - 16px)";
-  popup.style.maxHeight = "calc(100vh - 16px)";
-  popup.style.overflow = "auto"; // scroll inside if too large
-  
+  Object.assign(popup.style, {
+    position: 'fixed',              // easier calculations than absolute + scroll
+    boxSizing: 'border-box',
+    maxWidth: 'calc(100vw - 16px)', // keep tiny margin from edges
+    maxHeight: 'calc(100vh - 16px)',
+    overflow: 'auto',               // allow internal scrolling if content too big
+    zIndex: 9999,
+    // optional nice transition:
+    transition: 'transform .08s ease, opacity .08s ease'
+  });
+
   document.body.appendChild(popup);
-  
-  const rect = target.getBoundingClientRect();
-  const pw = popup.offsetWidth;
-  const ph = popup.offsetHeight;
-  const margin = 10;
-  
-  let top = rect.bottom + margin;
-  let left = rect.right - pw;
-  
-  if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
-  if (left < 8) left = 8;
-  if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
-  if (top < 8) top = 8;
-  
-  popup.style.top = top + "px";
-  popup.style.left = left + "px";
+
+  // helper to compute & place popup
+  function place() {
+    if (!popup || !popup.parentElement) return;
+
+    const rect = target.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const margin = 8; // distance from target / edges
+
+    // force reflow and measure
+    // if popup has intrinsic width larger than maxWidth, the maxWidth will limit it
+    // use getBoundingClientRect after layout to measure final size
+    const r = popup.getBoundingClientRect();
+    let pw = Math.min(r.width, vw - 16);
+    let ph = Math.min(r.height, vh - 16);
+
+    // If we've applied maxWidth/Height but the element hasn't reflowed its actual size yet,
+    // set explicit width/height to force measurement (only if it overflows)
+    if (r.width > vw - 16) popup.style.width = (vw - 16) + 'px';
+    if (r.height > vh - 16) popup.style.height = (vh - 16) + 'px';
+
+    // re-measure after possible size change
+    const rr = popup.getBoundingClientRect();
+    pw = rr.width;
+    ph = rr.height;
+
+    // preferred placement: below the target, right-aligned to target's right edge
+    let top = rect.bottom + margin;
+    let left = rect.right - pw;
+
+    // Horizontal adjustments:
+    if (left + pw > vw - margin) {
+      // try align to target.left
+      left = rect.left;
+    }
+    if (left < margin) {
+      // still overflow: pin to left margin (popup will be shrunk by maxWidth)
+      left = margin;
+    }
+
+    // Vertical adjustments: if doesn't fit below, try above
+    if (top + ph > vh - margin) {
+      const above = rect.top - ph - margin;
+      if (above >= margin) {
+        top = above; // place above
+      } else {
+        // can't fit above or below — center in viewport (and content is scrollable)
+        top = Math.max(margin, (vh - ph) / 2);
+        left = Math.max(margin, (vw - pw) / 2);
+      }
+    }
+    // ensure not outside top
+    if (top < margin) top = margin;
+
+    popup.style.top = Math.round(top) + 'px';
+    popup.style.left = Math.round(left) + 'px';
+  }
+
+  // place on next frame so CSS maxes take effect
+  requestAnimationFrame(place);
+
+  // reposition on resize/scroll (scroll listener with capture to catch container scroll too)
+  const onChange = () => requestAnimationFrame(() => {
+    // if popup removed, detach listeners
+    if (!popup || !popup.parentElement) {
+      window.removeEventListener('resize', onChange);
+      window.removeEventListener('scroll', onChange, true);
+      return;
+    }
+    place();
+  });
+
+  window.addEventListener('resize', onChange);
+  window.addEventListener('scroll', onChange, true);
+
+  // attach cleanup so removePopup() can call it
+  popup._cleanup = () => {
+    window.removeEventListener('resize', onChange);
+    window.removeEventListener('scroll', onChange, true);
+  };
+
+  return popup;
 }
   
   
