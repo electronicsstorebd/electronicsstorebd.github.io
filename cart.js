@@ -586,39 +586,32 @@ renderCart();
   function openPopupNear(target) {
   removePopup();
   popup = createPopup();
+  
+  // important fix for small screen
+  popup.style.position = "fixed"; // relative to viewport
+  popup.style.maxWidth = "calc(100vw - 16px)";
+  popup.style.maxHeight = "calc(100vh - 16px)";
+  popup.style.overflow = "auto"; // scroll inside if too large
+  
   document.body.appendChild(popup);
-
+  
   const rect = target.getBoundingClientRect();
-  let pw = popup.offsetWidth;
-  let ph = popup.offsetHeight;
+  const pw = popup.offsetWidth;
+  const ph = popup.offsetHeight;
   const margin = 10;
-
-  // যদি popup screen width এর চেয়ে বড় হয় → width limit
-  if (pw > window.innerWidth - 16) {
-    pw = window.innerWidth - 16;
-    popup.style.width = pw + "px";
-  }
-
-  // যদি popup screen height এর চেয়ে বড় হয় → height limit + scroll
-  if (ph > window.innerHeight - 16) {
-    ph = window.innerHeight - 16;
-    popup.style.height = ph + "px";
-    popup.style.overflowY = "auto";
-  }
-
-  // target এর center এ align
+  
   let top = rect.bottom + margin;
-  let left = rect.left + (rect.width / 2) - (pw / 2);
-
-  // boundary check
+  let left = rect.right - pw;
+  
   if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
   if (left < 8) left = 8;
   if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
   if (top < 8) top = 8;
-
+  
   popup.style.top = top + "px";
   popup.style.left = left + "px";
 }
+  
   
   document.addEventListener('click', function(e) {
     if (!popup) return;
