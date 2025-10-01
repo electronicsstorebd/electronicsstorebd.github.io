@@ -560,7 +560,7 @@ renderCart();
     popup.remove();
     popup = null;
   }
-  /*
+
   function openPopupNear(target) {
     removePopup();
     popup = createPopup();
@@ -572,7 +572,7 @@ renderCart();
     const margin = 10;
     
     let top = rect.bottom + margin;
-    let left = rect.left + (rect.width / 2) - (pw / 2);
+    let left = rect.right - pw;
     
     if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
     if (left < 8) left = 8;
@@ -582,37 +582,6 @@ renderCart();
     popup.style.top = top + 'px';
     popup.style.left = left + 'px';
   }
-  */
-  function openPopupNear(target) {
-  removePopup();
-  popup = createPopup();
-  document.body.appendChild(popup);
-
-  const rect = target.getBoundingClientRect();
-  const pw = popup.offsetWidth;
-  const ph = popup.offsetHeight;
-  const margin = 10;
-
-  // check if popup is bigger than screen
-  if (pw > window.innerWidth || ph > window.innerHeight) {
-    // center of screen
-    popup.style.top = Math.max((window.innerHeight - ph) / 2, 8) + 'px';
-    popup.style.left = Math.max((window.innerWidth - pw) / 2, 8) + 'px';
-    return;
-  }
-
-  let top = rect.bottom + margin;
-  let left = rect.right - pw;
-
-  if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
-  if (left < 8) left = 8;
-  if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
-  if (top < 8) top = 8;
-
-  popup.style.top = top + 'px';
-  popup.style.left = left + 'px';
-  }
-  
   
   document.addEventListener('click', function(e) {
     if (!popup) return;
