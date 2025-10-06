@@ -27,8 +27,7 @@
 
 .logo {
   color: var(--color1);
-  transform: translateX(-3px);
-  font-size: 26px;
+  font-size: 28px;
 }
 
 nav {
@@ -135,10 +134,10 @@ nav .hide svg {
 
 .s_bar {
   background: var(--color1);
-  width: cale(100% -20px);
+  width: cale(100% - 48px);
   border-radius: 4px;
   display: flex;
-  margin: 0 20px;
+  margin: 0 24px;
   align-items: center;
 }
 
