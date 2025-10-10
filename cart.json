@@ -34,15 +34,15 @@
       "search": ["Wheel", "dc motor", "#4333", "gare"]
     },
     {
-      "name": "Car Kit",
-      "ID": 2097,
+      "name": "UT33B+ Multimeter",
+      "ID": 3833,
       "sold": 0,
-      "available": 0,
-      "price": 1000,
-      "description": "Four gear motor, four wheel, battery holder, <b>1 SET</b>.",
-      "notice": "Will be available soon in Stoke",
+      "available": 10,
+      "price": 1020,
+      "description": "Uni-T UT33B+ digital multimeter, <b>1 PIC</b>.",
+      "notice": "High Quality Multimeter",
       "categories": "robotics topSale",
-      "search": ["car", "#2097", "arduino", "modify"]
+      "search": ["multimeter", "voltage", "ampere", "meter", "ut33b+", "#3833", "Uni-T", "digital"]
     },
     
     
