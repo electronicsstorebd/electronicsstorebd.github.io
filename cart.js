@@ -590,7 +590,7 @@ renderCart();
     removePopup();
   });
   
-  infoBtn.addEventListener('click', function(e) {
+  infoBtn?.addEventListener('click', function(e) {
     if (popup) { removePopup(); return; }
     openPopupNear(infoBtn);
   });
