@@ -58,7 +58,7 @@ function cartMake(p, product) {
   p.innerHTML += `
       <article class="cart" data-available="${product.available}" data-id="${product.ID}" data-sold="${product.sold}" aria-labelledby="p1-name">
         <div class="img-frame">
-          <img src="/IMG/${product.ID}.png" alt="${product.name}">
+          <img src="/IMG/${product.ID}.png" loading="lazy" alt="${product.name}">
         </div>
         <div class="cart-body">
           <div class="meta">
