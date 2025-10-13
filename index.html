@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"> 
 
 <head>
   <meta charset="UTF-8">
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="/slide.css" type="text/css" media="all" />
 
   <link rel="manifest" href="/manifest.json">
-
+  
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -695,9 +695,9 @@
     <div class="slider-viewport">
       <div class="slider-track">
         <!-- Slide items: change src/alt as needed -->
-        <figure class="slide"><img src="/IMG/5180.png" alt="Scenic view 1" loading="lazy"></figure>
-        <figure class="slide"><img src="/IMG/5679.png" alt="Scenic view 2" loading="lazy"></figure>
-        <figure class="slide"><img src="/IMG/6112.png" alt="Scenic view 3" loading="lazy"></figure>
+        <figure class="slide"><img src="/IMG/5180.png" alt="Scenic view 1" fetchpriority="high"></figure>
+        <figure class="slide"><img src="/IMG/5679.png" alt="Scenic view 2" fetchpriority="high"></figure>
+        <figure class="slide"><img src="/IMG/6112.png" alt="Scenic view 3" fetchpriority="high"ও></figure>
         <figure class="slide"><img src="/IMG/6113.png" alt="Scenic view 4" loading="lazy"></figure>
         <figure class="slide"><img src="/IMG/9100.png" alt="Scenic view 5" loading="lazy"></figure>
         <figure class="slide"><img src="/IMG/9330.png" alt="Scenic view 6" loading="lazy"></figure>
@@ -999,8 +999,8 @@
       </div>
     </div>
   </div>
-  <script src="/hamburger.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/cart.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/hamburger.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="/cart.js" type="text/javascript" charset="utf-8" defer></script>
   <script>
     function renderProducts(list) {
       //-------------------------------------------------------------------
