@@ -2,17 +2,31 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const savedValue = sessionStorage.getItem('searchValueN');
 
-hamburger.addEventListener('click', () => {
+// overlay ডাইনামিকভাবে তৈরি করা হচ্ছে
+const overlay = document.createElement('div');
+overlay.id = 'nav-overlay';
+document.body.appendChild(overlay); // body-র শেষে যুক্ত হচ্ছে
+
+function toggleMenu() {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
-});
+  overlay.classList.toggle('active');
+}
+
+hamburger.addEventListener('click', toggleMenu);
 
 hamburger.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+    toggleMenu();
   }
+});
+
+// overlay তে ক্লিক করলে সব বন্ধ হবে
+overlay.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navMenu.classList.remove('active');
+  overlay.classList.remove('active');
 });
 const sBar = document.querySelector('.s_bar input');
 const sBtn = document.querySelector('.s_bar button');
