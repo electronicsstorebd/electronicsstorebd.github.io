@@ -14,8 +14,31 @@
   top: 0;
   z-index: 1000000;
   box-shadow: 0 2px 7px #00000077;
+  background: radial-gradient(circle at 0% 0%, #ff7a7a40 0%, transparent 40%),
+    radial-gradient(circle at 100% 0%, #ffd57a40 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, #7afcff40 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, #9b7aff40 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #000, #111 40%, #000 100%);
+  background-size: 200% 200%;
+  animation: tacticalFlow 7s ease-in-out infinite;
 }
-
+@keyframes tacticalFlow {
+  0% {
+    background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, center;
+  }
+  25% {
+    background-position: 100% 0%, 100% 100%, 0% 100%, 0% 0%, center;
+  }
+  50% {
+    background-position: 100% 100%, 0% 100%, 0% 0%, 100% 0%, center;
+  }
+  75% {
+    background-position: 0% 100%, 0% 0%, 100% 0%, 100% 100%, center;
+  }
+  100% {
+    background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, center;
+  }
+}
 .container {
   margin: 0 auto;
   padding: 0 20px;
