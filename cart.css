@@ -87,6 +87,7 @@
   flex-direction: column;
   gap: 10px;
   flex: 1;
+  background: linear-gradient(0deg, #FCFCFF 90%, #FFFFFF 100%);
 }
 
 .meta {
@@ -94,7 +95,6 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  background: linear-gradient(0deg, #FCFCFF 90%, #FFFFFF 100%);
 }
 
 .meta .title {
