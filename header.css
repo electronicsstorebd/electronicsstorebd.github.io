@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 70px;
 }
 
 .logo {
@@ -148,6 +148,10 @@ nav .hide svg {
   nav a {
     width: 100%;
     color: var(--color2);
+  }
+
+  .container {
+    height: 50px;
   }
   
   #hamburger,
