@@ -1003,11 +1003,14 @@
   <script src="/cart.js" type="text/javascript" charset="utf-8" defer></script>
   <script>
     function renderProducts(list) {
+      const width = window.innerWidth;
+      const dWidth = Math.floor(width/320)
+      const numOfC = (dWidth < 3)? dWidth+2 : dWidth;
       //-------------------------------------------------------------------
       const topSale = document.querySelector('.topSale');
       const topSaleProducts = list
         .filter(p => p.categories.includes("topSale"))
-        .slice(0, 3);
+        .slice(0, numOfC);
       
       for (const product of topSaleProducts) {
         cartMake(topSale, product);
@@ -1017,7 +1020,7 @@
       const robotics = document.querySelector('.robotics');
       const roboticsProducts = list
         .filter(p => p.categories.includes("robotics"))
-        .slice(0, 3);
+        .slice(0, numOfC);
       
       for (const product of roboticsProducts) {
         cartMake(robotics, product);
@@ -1027,7 +1030,7 @@
       const diy = document.querySelector('.diy');
       const diyProducts = list
         .filter(p => p.categories.includes("diy"))
-        .slice(0, 3);
+        .slice(0, numOfC);
       
       for (const product of diyProducts) {
         cartMake(diy, product);
@@ -1037,7 +1040,7 @@
       const microelectronics = document.querySelector('.microelectronics');
       const microelectronicsProducts = list
         .filter(p => p.categories.includes("microelectronics"))
-        .slice(0, 3);
+        .slice(0, numOfC);
       
       for (const product of microelectronicsProducts) {
         cartMake(microelectronics, product);
