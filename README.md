@@ -1,58 +1,66 @@
-# Electronics Store BD — Live Website
+# Electronics Store BD — Live Production Website
 
 Live site: https://electronicsstorebd.github.io
 
-Welcome to the public source for the Electronics Store BD website — a fast, mobile-first storefront and storefront marketing site designed to showcase top electronics, highlight promotions, and make it easy for customers to find and contact the store.
+This repository is the public source for the live Electronics Store BD website. This is not just a project demo — it represents a production storefront and customer-facing service that helps people discover products, view current offers, contact the store, and (where the site provides those features) place orders or request service.
 
-This repository contains the website files that power the live site linked above. It's presented here as the website itself — a place for visitors, partners, and search engines — not as a development project. Below you’ll find what the site delivers, how to view it, and quick notes on lightweight maintenance and updates.
+Quick summary
+- Production status: Live and customer-facing.
+- Purpose: Serve product information, promotions, store details, and customer support channels.
+- Hosting: GitHub Pages (this repository contains the files that power the live site).
 
-Why this site shines
-- Clean, focused homepage that highlights featured products and current offers.
-- Mobile-first, responsive design for great shopping experiences on phones and desktops.
-- Fast-loading static assets for great user experience and SEO.
-- Clear contact and store location information to drive in-person visits and customer questions.
-- GitHub Pages hosting for simple, reliable publishing and updates.
+What visitors can expect
+- Curated product listings and featured items
+- Current promotions, banners, and time-limited offers
+- Store hours, phone, email, and directions
+- Purchase flow or contact/quote/request options (if enabled on the live site)
+- Clean, responsive layout optimized for mobile and desktop
 
-What visitors will see
-- A curated product showcase and gallery
-- Promotions and featured items
-- Store hours, contact details, and directions
-- A simple, attractive layout that works across devices
+Why this README has been updated
+The site actively supports customers and business activity. The README now reflects that this repository is the production source for a live service (not solely a marketing demo or design prototype). Operational and contributor guidance below is written with that in mind.
 
-Quick ways to view the site
-- Visit the live URL: https://electronicsstorebd.github.io
-- Preview locally (static):
-  - Clone the repo: git clone https://github.com/electronicsstorebd/electronicsstorebd.github.io.git
-  - Open index.html in a browser, or run a simple local server:
-    - Python 3: python -m http.server 8000 (then visit http://localhost:8000)
-    - Node: npx serve . (if you have Node installed)
-- If the site uses a static site generator (Jekyll) the repo will include _config.yml and related folders — in that case run the usual Jekyll preview commands.
+For customers (short)
+- Visit the live site: https://electronicsstorebd.github.io
+- For orders, pickups, delivery, returns or urgent support, follow the contact methods provided on the site (phone or email) — they will be listed on the Contact / Store page.
 
-Browse the site source
-- Home page: index.html (or the equivalent Jekyll layout)
-- Assets: assets/, css/, js/, images/ or similar folders for static files
-- Content pieces and includes (if Jekyll): _layouts/, _includes/, _posts/ (if present)
-Explore these folders to update text, swap images, or add new product highlights.
+For maintainers and contributors
+- Content and layout files:
+  - Home page: index.html (or the main Jekyll layout if a generator is used)
+  - Static assets: assets/, css/, js/, images/ (or similar)
+  - If this repo uses Jekyll, you may also see: _config.yml, _layouts/, _includes/, _posts/
+- Editing content:
+  - Small edits can be made directly in the GitHub web UI and committed to the default branch.
+  - For larger changes, create a branch, open a PR, and coordinate merges to avoid conflicting updates during active promotions or price changes.
+- Local preview:
+  - Static preview: open index.html in a browser.
+  - Simple local server: python -m http.server 8000 and visit http://localhost:8000
+  - If the site uses Jekyll: run the usual Jekyll preview commands (bundle exec jekyll serve) — check for _config.yml first.
 
-Branding, assets & screenshots
-- Screenshots and promotional images live in the images/ or assets/images/ folder — use them for social sharing and marketing.
-- To add a custom domain, add a CNAME file at the repository root with your domain and configure DNS accordingly.
+Operational guidance (recommended)
+- Treat this repository as the single source of truth for public-facing content.
+- Coordinate updates that affect prices, promotions, or service availability to avoid inconsistencies between the website and other sales channels.
+- When updating images or product details, prefer optimized images to keep page load fast.
+- Keep contact, hours, and location info accurate — these directly affect customer experience.
 
-Keeping the site fresh
-- Update product highlights, banners, and contact details directly in the HTML or Jekyll source and push to this repository.
-- For small copy or image changes, editing files directly on GitHub and committing is a fast way to publish updates.
-- Larger changes or design updates can be prepared in a branch and merged when ready.
+Deployment
+- This repo is published via GitHub Pages. Pushing changes to the publishing branch will update the live site according to the repository's Pages configuration.
+- If you want a custom domain, add a CNAME file at the repository root and configure DNS accordingly.
 
-Promote & share
-- Share the live URL on social media, business listings and local directories.
-- Use the homepage images and product descriptions for promotional posts.
+Security & privacy notes
+- Do not store sensitive credentials, API keys, or private data in this repository.
+- If the site integrates payment or customer data collection, ensure external services and data handling comply with applicable regulations and follow secure practices.
+
+Contributing
+- To propose a change: open an issue describing the change, then open a PR from a branch for code/content changes.
+- For small edits, use the GitHub UI to edit and commit directly to the default branch only if you are authorized to update live content.
+- For larger or structural changes, use feature branches and a PR workflow so changes can be reviewed and staged.
+
+License
+- If you want this site to be explicitly open-source, add a LICENSE file (for example, the MIT license). If a LICENSE already exists in this repository it determines reuse terms.
 
 Credits & contact
 - Site owner / maintainer: electronicsstorebd
 - Repository: https://github.com/electronicsstorebd/electronicsstorebd.github.io
-- For suggestions or partnerships, open an issue in this repository or contact the owner via their GitHub profile.
+- For suggestions, partnership requests, or to report issues affecting customers, please open an issue in this repository or contact the owner through their GitHub profile.
 
-License
-- If you’d like this site to be open-source, please add a LICENSE file (for example, the MIT license). If there’s already a LICENSE file, it defines reuse terms.
-
-Thank you for visiting the source of Electronics Store BD — the place that represents the storefront online and helps customers discover great electronics and friendly service.
+Thank you for visiting the public source of Electronics Store BD — this repository powers the live storefront and helps customers find products and get service.
