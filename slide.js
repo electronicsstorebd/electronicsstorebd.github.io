@@ -17,8 +17,8 @@
   let isDragging = false;
   let startX = 0,
     currentTranslate = 0,
-    prevTranslate = 0,
-    animationID = null;
+    prevTranslate = 0;
+  let isTransitioning = false; // <-- key flag
   
   // clone for infinite loop
   const firstClone = slides[0].cloneNode(true);
@@ -47,14 +47,16 @@
   function setSizes() {
     slideWidth = slider.querySelector('.slider-viewport').clientWidth;
     allSlides.forEach(s => s.style.width = slideWidth + 'px');
-    moveToIndex(index, false);
+    // when resizing do instant move & update aria immediately
+    moveToIndex(index, false, true);
   }
   window.addEventListener('resize', debounce(setSizes, 120));
   setSizes();
   
   // initial position: index 1 (first real)
-  moveToIndex(index, false);
+  moveToIndex(index, false, true);
   updateDots();
+  updateAriaStates(index);
   
   // auto play
   function startAuto() {
@@ -102,7 +104,7 @@
   dots.forEach(d => d.addEventListener('click', e => {
     const n = Number(e.currentTarget.dataset.slideIndex);
     index = n + 1;
-    moveToIndex(index, true);
+    moveToIndex(index, true, false);
     restartAuto();
   }));
   
@@ -120,55 +122,128 @@
   // make slider focusable
   slider.tabIndex = 0;
   
-  // transition end: handle clones
-  track.addEventListener('transitionend', () => {
+  // transition end: handle clones and update aria/dots once (no blink)
+  track.addEventListener('transitionend', (ev) => {
+    // only respond to transform transitions
+    if (ev.propertyName && ev.propertyName !== 'transform') return;
+    
+    isTransitioning = false;
+    
+    // if we landed on a clone, jump instantly to the real slide without transition
     const current = allSlides[index];
     if (current && current.dataset.clone === 'first') {
-      // jumped to clone of first -> reset to real first
       index = 1;
-      moveToIndex(index, false);
+      // instant move without triggering aria during teleport
+      moveToIndex(index, false, true);
     } else if (current && current.dataset.clone === 'last') {
       index = slides.length;
-      moveToIndex(index, false);
+      moveToIndex(index, false, true);
     }
+    
+    // now safe to update dots & aria
     updateDots();
+    updateAriaStates(index);
   });
   
   // go next/prev
   function goNext() {
+    if (isTransitioning) return; // prevent spam clicks while animating
     index++;
-    moveToIndex(index, true);
-    updateDots();
+    moveToIndex(index, true, false);
+    updateDots(); // visual dot update can happen immediately
   }
   
   function goPrev() {
+    if (isTransitioning) return;
     index--;
-    moveToIndex(index, true);
+    moveToIndex(index, true, false);
     updateDots();
   }
   
   function restartAuto() { stopAuto(); if (!isPaused) startAuto(); }
   
   // core movement
-  function moveToIndex(i, animate = true) {
-    if (animate) track.style.transition = 'transform ' + TRANS_MS + 'ms cubic-bezier(.22,.9,.3,1)';
-    else track.style.transition = 'none';
-    const x = -(i * slideWidth);
-    track.style.transform = `translate3d(${x}px,0,0)`;
-    // aria hidden toggles for accessibility
-    allSlides.forEach((s, idx) => {
-      const img = s.querySelector('img');
-      if (!img) return;
-      if (idx === i) {
-        img.removeAttribute('aria-hidden');
-      } else {
-        img.setAttribute('aria-hidden', 'true');
-      }
+  // animate: whether to use transition
+  // forceAria: if true, update aria immediately (used for instant moves/resizes)
+  function moveToIndex(i, animate = true, forceAria = false) {
+  // 1) immediately set .active on the target slide-content
+  // (do this BEFORE the transform so content appears right away)
+  const target = allSlides[i];
+  if (target) {
+    allSlides.forEach(s => {
+      const content = s.querySelector('.slide-content');
+      if (!content) return;
+      if (s === target) content.classList.add('active');
+      else content.classList.remove('active');
     });
   }
   
+  // 2) do the transform (animate or instant)
+  if (animate) {
+    isTransitioning = true;
+    track.style.transition = 'transform ' + TRANS_MS + 'ms cubic-bezier(.22,.9,.3,1)';
+  } else {
+    track.style.transition = 'none';
+  }
+  
+  const x = -(i * slideWidth);
+  
+  // ensure the DOM has applied the .active class before starting transform
+  // use rAF to let browser paint the class change, then move
+  requestAnimationFrame(() => {
+    track.style.transform = `translate3d(${x}px,0,0)`;
+  });
+  
+  // 3) ARIA updates: if instant or forced, run now. Otherwise defer to transitionend.
+  if (!animate || forceAria) {
+    requestAnimationFrame(() => {
+      track.offsetHeight;
+      updateAriaStates(i);
+    });
+  }
+}
+  
+  // update aria/tabindex states for slides (safe to call after transition or for instant moves)
+  function updateAriaStates(i) {
+    // preserve focus if it's inside the slider to avoid stealing focus during updates
+    const activeInside = slider.contains(document.activeElement) ? document.activeElement : null;
+    
+    allSlides.forEach((s, idx) => {
+      const img = s.querySelector('img');
+      const isCurrent = idx === i;
+      
+      if (img) {
+        if (isCurrent) img.removeAttribute('aria-hidden');
+        else img.setAttribute('aria-hidden', 'true');
+      }
+      
+      s.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+      
+      const parentLink = s.closest('a');
+      if (parentLink) {
+        // If the focused element is inside this parentLink and it's about to be hidden,
+        // do not remove focus/tabindex to avoid focus loss flicker.
+        if (isCurrent) {
+          parentLink.removeAttribute('aria-hidden');
+          parentLink.tabIndex = 0;
+        } else {
+          // Only hide if it is not the focused element.
+          if (activeInside && parentLink.contains(activeInside)) {
+            // keep it focusable for now
+            parentLink.removeAttribute('aria-hidden');
+            parentLink.tabIndex = 0;
+          } else {
+            parentLink.setAttribute('aria-hidden', 'true');
+            parentLink.tabIndex = -1;
+          }
+        }
+      }
+    });
+    
+    // if focus was inside slider, keep it — don't re-focus automatically here
+  }
+  
   function updateDots() {
-    // real slides count = slides.length
     let active = index - 1;
     if (active < 0) active = slides.length - 1;
     if (active >= slides.length) active = 0;
@@ -182,11 +257,12 @@
   window.addEventListener('pointermove', onDrag);
   
   function startDrag(e) {
+    if (isTransitioning) return; // don't start drag while animating
     isDragging = true;
     startX = e.clientX;
     prevTranslate = -index * slideWidth;
     track.style.transition = 'none';
-    slider.setPointerCapture(e.pointerId);
+    try { slider.setPointerCapture(e.pointerId); } catch (err) {}
   }
   
   function onDrag(e) {
@@ -204,7 +280,7 @@
     if (Math.abs(dx) > slideWidth * 0.18) {
       if (dx < 0) { index++; } else { index--; }
     }
-    moveToIndex(index, true);
+    moveToIndex(index, true, false);
     restartAuto();
   }
   
@@ -216,5 +292,4 @@
       id = setTimeout(() => fn.apply(this, a), t);
     };
   }
-  
 })();
