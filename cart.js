@@ -378,6 +378,7 @@ $('#es-proceed-checkout').addEventListener('click', () => {
   populateCheckout(null);
   $('#es-checkout-overlay').style.display = 'flex';
   $('#es-checkout-overlay').classList.add('show');
+  runAutoShowTooltip(button, showTooltip, hideTooltip);
 });
 $('#es-clear-cart').addEventListener('click', () => {
   if (confirm('Clear cart?')) {
@@ -441,6 +442,7 @@ function attachToExistingButtons() {
       populateCheckout(id);
       $('#es-checkout-overlay').style.display = 'flex';
       $('#es-checkout-overlay').classList.add('show');
+      runAutoShowTooltip(button, showTooltip, hideTooltip);
       isSingleBuy = true;
     });
   });
@@ -596,3 +598,35 @@ renderCart();
   });
   
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  
+  if (!button) return;
+  const tooltipText = "Check Delivery Details for Your Location.";
+  const wrapper = document.createElement("div");
+  wrapper.className = "tooltip-wrapper";
+  
+  if (button.parentNode) {
+    button.parentNode.insertBefore(wrapper, button);
+    wrapper.appendChild(button);
+  } else return;
+  
+  tooltip.className = "dynamic-tooltip";
+  tooltip.innerHTML = `${tooltipText} <div class="tooltip-arrow"></div>`;
+  wrapper.appendChild(tooltip);
+});
+
+const tooltip = document.createElement("div");
+const button = document.getElementById("infoBtn");
+const showTooltip = () => tooltip.classList.add("visible");
+const hideTooltip = () => tooltip.classList.remove("visible");
+
+function runAutoShowTooltip(targetButton, showFn, hideFn, delay = 1000, duration = 5000) {
+  if (!targetButton || !showFn || !hideFn) return;
+  setTimeout(() => {
+    showFn();
+    setTimeout(() => {
+      hideFn();
+    }, duration);
+  }, delay);
+}
