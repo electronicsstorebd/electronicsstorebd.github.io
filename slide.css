@@ -171,3 +171,47 @@
     transform: none !important;
   }
 }
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px 60px; /* space for dots at the bottom */
+  color: #fff;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0) 100%);
+  transition: opacity 300ms, transform 300ms;
+  /* Initial state: hidden off-screen or faded */
+  transform: translateY(50px);
+  opacity: 0;
+  pointer-events: none; /* Important: allow click to pass through to slide-link */
+}
+
+/* Text styles */
+.product-name {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.product-details {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  margin: 0 0 12px 0;
+  max-width: 80%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Animation for Active Slide (visible) - handled by JS */
+.slide[aria-current="true"] .slide-content {
+  opacity: 1;
+  transform: translateY(20px);
+  transition-delay: 0ms; /* delay for a smoother entrance */
+}
+
+@media (max-width: 720px) {
+  .slide-content {
+    padding: 12px 18px 50px;
+  }
+}
+
