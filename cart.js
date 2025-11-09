@@ -482,7 +482,7 @@ renderCart();
   let lastSelected = null;
   
   const options = [
-    { id: 'narayanganj', name: 'Inside of Narayanganj', price: 70 },
+    { id: 'narayanganj', name: 'Inside of Narayanganj', price: 80 },
     { id: 'dhaka', name: 'Inside of Dhaka', price: 110 },
     { id: 'rest', name: 'All over Bangladesh', price: 130 }
   ];
