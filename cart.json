@@ -61,8 +61,8 @@
     {
       "name": "180 DC Motor",
       "ID": 5180,
-      "sold": 1,
-      "available": 2,
+      "sold": 3,
+      "available": 0,
       "price": 55,
       "description": "3v-9v Short Shaft 180 DC motor, <b>1 PIC</b>.",
       "notice": "Good Quality Fast Motor",
@@ -96,8 +96,8 @@
     {
       "name": "Pump DC Motor",
       "ID": 5679,
-      "sold": 1,
-      "available": 2,
+      "sold": 3,
+      "available": 0,
       "price": 50,
       "description": "DC 3v-6v Mini Submersible Pump 120 L/H Ultra-Quiet, <b>1 PIC</b>.",
       "notice": "Limited Stock",
