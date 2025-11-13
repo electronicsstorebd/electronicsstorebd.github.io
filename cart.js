@@ -69,8 +69,8 @@ function cartMake(p, product) {
             <div class="price">${money(product.price)}</div>
           </div>
           <div class="stats" aria-hidden="false">
-            <div>Available: <strong class="info-available"></strong></div>
             <div>Sold: <strong class="info-sold"></strong></div>
+            <div>Available: <strong class="info-available"></strong></div>
           </div>
           <div class="progress-wrap">
             <div class="progress-bar" aria-hidden="true"><span></span></div>
