@@ -14,6 +14,9 @@
   top: 0;
   z-index: 1000000;
   box-shadow: 0 2px 7px #00000077;
+  background: var(--color2);
+}
+  /*
   background: radial-gradient(circle at 0% 0%, #ff7a7a40 0%, transparent 40%),
     radial-gradient(circle at 100% 0%, #ffd57a40 0%, transparent 40%),
     radial-gradient(circle at 100% 100%, #7afcff40 0%, transparent 40%),
@@ -22,6 +25,7 @@
   background-size: 200% 200%;
   animation: tacticalFlow 7s ease-in-out infinite;
 }
+*/
 @keyframes tacticalFlow {
   0% {
     background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, center;
@@ -45,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 78px;
 }
 
 .logo {
