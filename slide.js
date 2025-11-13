@@ -1,4 +1,5 @@
-(function() {
+//(function() {
+window.addEventListener("load", () => {
   const slider = document.querySelector('.auto-slider');
   if (!slider) return;
   const track = slider.querySelector('.slider-track');
@@ -292,4 +293,5 @@
       id = setTimeout(() => fn.apply(this, a), t);
     };
   }
-})();
+});
+//})();
