@@ -365,7 +365,7 @@ textarea {
 }
 
 /* whatsapp button style */
-.wa-btn {
+.wa-btn, .btnSm {
   all: unset;
   display: block;
   gap: 8px;
@@ -377,14 +377,107 @@ textarea {
   color: #fff;
   font-weight: 800;
   animation: pulse-once 0.8s ease-in-out 2;
+}
 
+.aObtn{
+  color: #168AFF;
+  display: block;
+  text-align: center;
+}
+
+.aObtn.hide{
+  display: none;
+}
+
+.aObtn:hover{
+  text-decoration: underline;
+}
+
+.sBtnCon{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.btnSm{
+  background: #fef;
+  animation: none;
+  margin: 5px;
+  flex: 1 1 280px;
+}
+
+.messenger {
+  background: linear-gradient(
+    215deg,
+    rgb(255, 143, 178) 10%,
+    rgb(167, 151, 255) 50%,
+    rgb(0, 229, 255) 150%
+  );
+  position: relative;
+}
+
+.messages{
+  background: #FFD72C;
+}
+
+.mail{
+  background: #EA4335;
+}
+
+.phone{
+  background: #8D5695;
 }
 
 @keyframes pulse-once {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.05); } /* বড় হওয়ার মাপ */
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  
+  50% {
+    transform: scale(1.05);
+  }
+  
+  /* বড় হওয়ার মাপ */
+  100% {
+    transform: scale(1);
+  }
 }
+
+#es-messenger-send.copy-mode {
+    background: #333;
+}
+
+/* copy popup inside */
+#es-messenger-send .copy-box {
+    position: absolute;
+    left: 50%;
+    top: -45px;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    font-size: 13px;
+    white-space: nowrap;
+    animation: fadeIn 0.25s ease;
+}
+
+#es-messenger-send .copy-btn {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity:0; transform: translate(-50%, -10px); }
+    to   { opacity:1; transform: translate(-50%, 0); }
+}
+
 
 .remove-btn{
   color: #ff000077;
