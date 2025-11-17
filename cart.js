@@ -4,8 +4,12 @@ const CFG = {
   LAST_NAME_KEY: 'es_last_name',
   LAST_PHONE_KEY: 'es_last_phone',
   WHATSAPP: '+8801872605055',
+  SMS_NUMBER: '+8801872605055',
+  MAIL_TO: 'officialelectronicsstore@gmail.com',
+  MESSENGER_PAGE: 'officialelectronicsstore',
   IMG_BASE: '/IMG/'
 };
+
 let isSingleBuy = false;
 let deliveryPrice = 80;
 const $ = sel => document.querySelector(sel);
@@ -298,12 +302,115 @@ function buildWhatsAppMessage(singleId) {
   return lines.join('\n');
 }
 
+function buildPlainMessage(singleId) {
+  const lines = [];
+  lines.push('আসসালামু আলাইকুম। আমি অর্ডার করতে চাই —');
+  lines.push('');
+  lines.push('Order Details:');
+  lines.push('');
+  
+  let items = [];
+  if (singleId) {
+    const p = PRODUCTS[String(singleId)];
+    if (p) items = [{ name: p.name, qty: 1, price: p.price }];
+  } else {
+    const cart = loadCart();
+    items = Object.values(cart).map(it => ({ name: it.name, qty: it.qty, price: it.price }));
+  }
+  
+  items.forEach((it, i) => {
+    lines.push(`${i+1}. ${it.name} × ${it.qty} — ${money(it.price * it.qty)}`);
+  });
+  
+  const itemsTotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+  const delivery = itemsTotal > 0 ? deliveryPrice : 0;
+  
+  lines.push('-------------------------');
+  lines.push(`Items total: ${money(itemsTotal)}`);
+  lines.push(`Delivery: ${money(delivery)}`);
+  lines.push(`Grand total: ${money(itemsTotal + delivery)}`);
+  lines.push('-------------------------');
+  lines.push('');
+  
+  const name = $('#es-name').value.trim() || '(নাম নেই)';
+  const phone = $('#es-phone').value.trim() || '(ফোন নেই)';
+  const address = $('#es-address').value.trim() || '(ঠিকানা নেই)';
+  
+  lines.push(`Name: ${name}`);
+  lines.push(`Phone: ${phone}`);
+  lines.push(`Address: ${address}`);
+  lines.push('');
+  lines.push('আপনি কি কনফার্ম করবেন? ধন্যবাদ।');
+  
+  return lines.join('\n');
+}
+
 function openWhatsApp(singleId) {
   const msg = buildWhatsAppMessage(singleId);
   const url = 'https://wa.me/' + CFG.WHATSAPP + '?text=' + encodeURIComponent(msg);
   window.open(url, '_blank');
   if (!isSingleBuy) clearCart();
   else !isSingleBuy;
+}
+
+function openSMS(singleId) {
+  const msg = buildPlainMessage(singleId);
+  const phone = CFG.SMS_NUMBER; // নিজের নম্বর দিন
+  const url = "sms:" + phone + "?body=" + encodeURIComponent(msg);
+  
+  window.open(url, "_blank");
+}
+
+let copiedOnce = false;
+
+function openMessenger(singleId) {
+  const mainBtn = document.getElementById("es-messenger-send");
+  const msg = buildPlainMessage(singleId);
+  const page = CFG.MESSENGER_PAGE;
+  const url = "https://m.me/" + page;
+
+  // প্রথম ক্লিকে copy UI দেখাবে
+  mainBtn.classList.add("copy-mode");
+  const inHT = mainBtn.innerHTML
+  // বাটনের ভেতরে ছোট copy popup ঢুকানো
+  mainBtn.innerHTML = `
+            Copy this message?
+            <div class="copy-box">
+                Please Copy →
+                <button class="copy-btn">Copy</button>
+            </div>
+        `;
+  
+  const copyBtn = mainBtn.querySelector(".copy-btn");
+  
+  copyBtn.onclick = (e) => {
+    e.stopPropagation(); // যাতে মেইন onclick না চলে
+    navigator.clipboard.writeText(msg).then(() => {
+      copiedOnce = true;
+      
+      mainBtn.classList.remove("copy-mode");
+      mainBtn.innerHTML = inHT;
+      window.open(url, "_blank");
+    });
+  };
+}
+
+function openMail(singleId) {
+  const msg = buildPlainMessage(singleId);
+  
+  const email = CFG.MAIL_TO;
+  const address = $('#es-address').value.trim();
+  
+  const subject = address ?
+    `Order FROM "${address}"` :
+    `Order FROM "SECRET"`;
+  
+  const url =
+    "mailto:" + email +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(msg);
+  
+  window.location.href = url;
 }
 
 function saveAddressAndContact() {
@@ -401,13 +508,95 @@ $('#es-back-to-cart').addEventListener('click', () => {
 });
 
 $('#es-save-address').addEventListener('click', saveAddressAndContact);
-$('#es-confirm-purchase').addEventListener('click', () => {
-  alert("Order feature isn't ready yet. Order via WhatsApp. Thanks!");
+document.addEventListener('DOMContentLoaded', () => {
+  const link = document.querySelector('#es-confirm-purchase');
+  const container = document.querySelector('.sBtnCon');
+  container.style.display = 'none';
+  
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const modal = $('#es-checkout-overlay .modal');
+    if (container.style.display === 'none') {
+      container.style.display = 'flex';
+      this.classList.add('hide');
+    }
+    modal.scrollTo({
+      top: modal.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
 });
+
+
+
 $('#es-whatsapp-send').addEventListener('click', (ev) => {
   ev.preventDefault();
   openWhatsApp(window.SINGLE_BUY || null);
 });
+
+$('#es-messenger-send').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  openMessenger(window.SINGLE_BUY || null);
+});
+
+$('#es-messages-send').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  openSMS(window.SINGLE_BUY || null);
+});
+
+$('#es-mail-send').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  openMail(window.SINGLE_BUY || null);
+});
+
+async function startBoxPiP(boxId, fps = 2) {
+  
+  const box = document.getElementById(boxId);
+  
+  // Hidden video auto-create
+  let video = document.getElementById("pipVideo");
+  if (!video) {
+    video = document.createElement("video");
+    video.id = "pipVideo";
+    video.muted = true;
+    video.playsInline = true;
+    video.style.display = "none";
+    document.body.appendChild(video);
+  }
+  
+  // Offscreen canvas
+  const off = document.createElement("canvas");
+  const ctx = off.getContext("2d");
+  
+  // First snapshot
+  const snap = await html2canvas(box);
+  off.width = snap.width;
+  off.height = snap.height;
+  ctx.drawImage(snap, 0, 0);
+  
+  // Stream setup
+  const stream = off.captureStream(fps);
+  video.srcObject = stream;
+  await video.play();
+  
+  // Request PIP
+  await video.requestPictureInPicture();
+  
+  // Live update loop
+  const loop = setInterval(async () => {
+    const s = await html2canvas(box);
+    ctx.clearRect(0, 0, off.width, off.height);
+    ctx.drawImage(s, 0, 0);
+  }, 1000);
+  
+  // Cleanup on PiP exit
+  video.addEventListener("leavepictureinpicture", () => {
+    clearInterval(loop);
+    stream.getTracks().forEach(track => track.stop());
+  });
+  window.open("tel:01872605055", "_blank");
+}
 document.body.addEventListener('click', (ev) => {
   const inc = ev.target.closest('.qty-inc');
   if (inc) { const id = inc.dataset.id; const cart = loadCart(); const it = cart[id]; if (it) setQty(id, Number(it.qty) + 1); return; }
