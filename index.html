@@ -1020,7 +1020,26 @@
     <span class="count" id="es-cart-count">0</span>
     <span id="es-cart-total">৳0.00</span>
   </button>
-  
+    <div id="es-cart-overlay" class="overlay" aria-hidden="true" style="display:none;">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Cart Details">
+      <header>
+        <strong>Cart</strong>
+        <button class="btn close" id="es-close-cart">Close</button>
+      </header>
+      <div class="body">
+        <div id="es-cart-empty" style="display:none;text-align:center;color:#666;padding:20px">Cart is empty.</div>
+        <div class="cart-list" id="es-cart-list"></div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Subtotal</div>
+          <div style="font-weight:800" id="es-cart-subtotal">৳0.00</div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="btn" id="es-clear-cart">Clear</button>
+        <button class="btn primary" id="es-proceed-checkout">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
   <div id="es-checkout-overlay" class="overlay" aria-hidden="true" style="display:none;">
     <div id="booxx" class="modal" role="dialog" aria-modal="true" aria-label="Checkout">
       <header>
