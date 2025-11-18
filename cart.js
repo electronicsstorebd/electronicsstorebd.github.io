@@ -420,7 +420,9 @@ function openMail(singleId) {
     "?subject=" + encodeURIComponent(subject) +
     "&body=" + encodeURIComponent(msg);
   
-  window.location.href = url;
+  window.open(url, "_blank");
+      if (!isSingleBuy) clearCart();
+      else !isSingleBuy;
 }
 
 function saveAddressAndContact() {
