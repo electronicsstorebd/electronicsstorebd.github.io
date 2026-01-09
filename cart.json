@@ -139,6 +139,17 @@
     
     
     
+    {
+      "name": "5mm UV LED",
+      "ID": 8107,
+      "sold": 0,
+      "available": 100,
+      "price": 5,
+      "description": "Small UV LED 5mm, <b>1 PIC</b>.",
+      "notice": "High Quality LED",
+      "categories": "microelectronics topSale",
+      "search": ["small", "#8107", "money", "uv", "led"]
+    },
     
     {
       "name": "BC557 NPN Transistor",
@@ -151,6 +162,7 @@
       "categories": "microelectronics topSale",
       "search": ["NPN", "#9557", "BC547", "transistor"]
     },
+
     {
       "name": "Push Button",
       "ID": 7778,
