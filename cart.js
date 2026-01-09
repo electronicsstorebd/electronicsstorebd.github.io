@@ -16,6 +16,8 @@ const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 const money = n => '৳' + Number(n || 0).toFixed(2);
 
+document.addEventListener("DOMContentLoaded", ()=>document.querySelectorAll("a").forEach(e=>e.textContent.trim()=="See More"&&(e.style.display="none")),window.onload=()=>document.querySelectorAll("a").forEach(e=>e.textContent.trim() =="See More"&&(e.style.display="unset")));
+
 function cartFtouch(p) {
   p.querySelectorAll('.cart').forEach(cart => {
     const avail = Number(cart.getAttribute('data-available') || 0);
