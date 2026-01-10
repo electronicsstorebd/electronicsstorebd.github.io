@@ -82,6 +82,17 @@
       "search": ["180", "dc motor", "#5335", "motor", "high speed motor"]
     },
     {
+      "name": "TP4056 type C",
+      "ID": 6113,
+      "sold": 0,
+      "available": 300,
+      "price": 20,
+      "description": "Type C 3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
+      "notice": "High Demand",
+      "categories": "diy",
+      "search": ["type c", "bms", "#6113", "tp4056"]
+    },
+    {
       "name": "MH-DL18S 1S to 8S",
       "ID": 6188,
       "sold": 50,
@@ -129,17 +140,6 @@
       "notice": "Will be available soon in Stoke",
       "categories": "robotics",
       "search": ["arduino", "uno", "#1200", "microcontroller"]
-    },
-    {
-      "name": "TP4056 type C",
-      "ID": 6113,
-      "sold": 0,
-      "available": 300,
-      "price": 20,
-      "description": "Type C 3.7v battery charger and Auto cut BMS, <b>1 PIC</b>.",
-      "notice": "High Demand",
-      "categories": "diy robotics",
-      "search": ["type c", "bms", "#6113", "tp4056"]
     },
     
     
