@@ -82,15 +82,15 @@
       "search": ["180", "dc motor", "#5335", "motor", "high speed motor"]
     },
     {
-      "name": "130 DC Motor",
-      "ID": 5130,
-      "sold": 0,
-      "available": 300,
-      "price": 15,
-      "description": "3v-9v 130 DC motor, <b>1 PIC</b>.",
-      "notice": "Average Quality Motor",
+      "name": "MH-DL18S 1S to 8S",
+      "ID": 6188,
+      "sold": 50,
+      "available": 100,
+      "price": 70,
+      "description": "Lithium battery level indicator module , <b>1 PIC</b>.",
+      "notice": "Average Quality",
       "categories": "diy topSale",
-      "search": ["130", "dc motor", "#5130", "motor", "normal motor"]
+      "search": ["1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "battery level", "module", "#6188", "normal"]
     },
     
     {
@@ -104,7 +104,17 @@
       "categories": "diy topSale",
       "search": ["pump", "dc motor", "#5679", "motor", "submersible"]
     },
-    
+    {
+      "name": "130 DC Motor",
+      "ID": 5130,
+      "sold": 0,
+      "available": 300,
+      "price": 15,
+      "description": "3v-9v 130 DC motor, <b>1 PIC</b>.",
+      "notice": "Average Quality Motor",
+      "categories": "diy topSale",
+      "search": ["130", "dc motor", "#5130", "motor", "normal motor"]
+    },
     
     
     
