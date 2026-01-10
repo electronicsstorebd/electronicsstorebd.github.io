@@ -66,6 +66,7 @@ function getSearchId() {
     const id = url.searchParams.get('id');
 
     if (id && /^\d{4}$/.test(id)) {
+      id = "#"+id;
       return id;
     }
   }
