@@ -41,7 +41,7 @@ function runSearch() {
   sBar.value = '';
   window.location.href = '/SEARCH';
 }
-
+/*
 function getSearchId() {
   const url = location.href;
   
@@ -54,6 +54,20 @@ function getSearchId() {
       return id;
     }
     
+  }
+  return null;
+}
+*/
+function getSearchId() {
+  const url = new URL(window.location.href);
+  const path = url.pathname.replace(/\/$/, '');
+
+  if (path.endsWith('/SEARCH')) {
+    const id = url.searchParams.get('id');
+
+    if (id && /^\d{4}$/.test(id)) {
+      return id;
+    }
   }
   return null;
 }
