@@ -67,6 +67,7 @@ function getSearchId() {
 
     if (id && /^\d{4}$/.test(id)) {
       id = "#"+id;
+      alert(id);
       return id;
     }
   }
