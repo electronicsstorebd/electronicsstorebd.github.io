@@ -3,9 +3,9 @@
     {
       "name": "SG90 Micro Servo Motor",
       "ID": 5190,
-      "sold": 100,
-      "available": 0,
-      "price": 550,
+      "sold": 200,
+      "available": 300,
+      "price": 99,
       "description": "9G tower pro servo 180° degree rotation, <b>1 PIC</b>.",
       "notice": "Standard Quality",
       "categories": "robotics",
