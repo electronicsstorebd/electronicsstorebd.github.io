@@ -63,10 +63,10 @@ function getSearchId() {
   const path = url.pathname.replace(/\/$/, '');
 
   if (path.endsWith('/SEARCH')) {
-    const id = url.searchParams.get('id');
+    let id = url.searchParams.get('id');
 
     if (id && /^\d{4}$/.test(id)) {
-      console.log(id);
+      id = "#" + id;
       return id;
     }
   }
