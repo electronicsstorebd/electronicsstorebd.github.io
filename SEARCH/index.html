@@ -375,7 +375,7 @@
   
   // sessionStorage থেকে রিকভার করো (যদি না থাকে তো খালি স্ট্রিং)
   const rawSaved = JSON.parse(sessionStorage.getItem("searchValueA") || "null");
-  
+  console.log(rawSaved)
   // savedArr অ্যারে না হলে string থেকে শব্দ বানাও
   const savedArr = Array.isArray(rawSaved) ?
     rawSaved :
