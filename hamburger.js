@@ -105,7 +105,7 @@ const links = [
   "/404",
   "https://www.google.com/maps?q=23.6818337,90.4797731",
   "tel:" + contactNumber,
-  "mailto:" +consolaill
+  "mailto:" + contactMaill
 ];
 document.querySelectorAll('.addI').forEach((e, n) => {
   e.innerHTML = contact[n];
