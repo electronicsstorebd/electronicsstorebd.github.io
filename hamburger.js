@@ -120,5 +120,6 @@ window.onload = () => {
   if (val && !savedValue) {
     sBar.value = '';
     sessionStorage.setItem("searchValueA", JSON.stringify(val));
+    console.log(sessionStorage.getItem("searchValueA"));
   }
 };
