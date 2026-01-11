@@ -116,10 +116,9 @@ document.querySelectorAll('.link').forEach((e, n) => {
 
 const val = getSearchId();
 
-window.onload = () => {
+//window.onload = () => {
   if (val && !savedValue) {
     sBar.value = '';
     sessionStorage.setItem("searchValueA", JSON.stringify(val));
-    console.log(sessionStorage.getItem("searchValueA"));
   }
-};
+//};
