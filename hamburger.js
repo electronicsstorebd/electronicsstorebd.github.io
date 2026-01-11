@@ -66,8 +66,7 @@ function getSearchId() {
     const id = url.searchParams.get('id');
 
     if (id && /^\d{4}$/.test(id)) {
-      id = "#"+id;
-      alert(id);
+      console.log(id);
       return id;
     }
   }
@@ -106,7 +105,7 @@ const links = [
   "/404",
   "https://www.google.com/maps?q=23.6818337,90.4797731",
   "tel:" + contactNumber,
-  "mailto:" + contactMaill
+  "mailto:" +consolaill
 ];
 document.querySelectorAll('.addI').forEach((e, n) => {
   e.innerHTML = contact[n];
