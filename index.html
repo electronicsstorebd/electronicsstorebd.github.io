@@ -899,6 +899,27 @@
       <a style="all: unset;" href="/MICROELECTRONICS">See More</a>
     </footer>
   </div>
+  <div class="section">
+    <header style="margin-bottom:20px;">
+      <h1 style="margin-bottom: 2px;">
+        <!-- Svg -->  
+        <!-- Nickname  -->
+      </h1>
+      <p style="margin:0; opacity: .8;">
+        <!-- Nickname  -->
+      </p>
+    </header>
+    <main class="grid-wrap randomCart" id="product-grid" data-cols="auto">
+    </main>
+    <footer style="position: relative; margin-bottom: 50px; text-align: center; padding: 20px;">
+      <div id="load_box">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
+    </footer>
+  </div>
   
   <!--Footer  -------------------->
   <footer class="footer" aria-labelledby="footer-heading">
@@ -1179,6 +1200,58 @@
       }
       cartFtouch(microelectronics);
     }
+    const randomCart = document.querySelector('.randomCart');
+    const loading = document.querySelector('#load_box');
+    
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+    
+    const usedProducts = new Set();
+    function loadRandomCart() {
+      const available = globalList.filter(p => !usedProducts.has(p));
+      if (available.length === 0) {
+        loading.style.display = "none";
+        observer.disconnect(); 
+        return
+      }
+      const count = Math.min(3, available.length);
+      const selected = shuffleArray(available).slice(0, count);
+      
+      for (const product of selected) {
+        cartMake(randomCart, product);
+        usedProducts.add(product);
+      }
+      cartFtouch(randomCart);
+    }
+    
+    let canLoad = true;
+    let timer = null;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        
+        if (entry.isIntersecting && canLoad) {
+          canLoad = false;
+          timer = setTimeout(() => {
+            loadRandomCart();
+          }, 700);
+        }
+        if (!entry.isIntersecting) {
+          clearTimeout(timer);
+          canLoad = true;
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.4
+    });
+    observer.observe(loading);
   </script>
 </body>
 
