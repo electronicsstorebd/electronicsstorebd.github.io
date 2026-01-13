@@ -678,9 +678,11 @@ function attachToExistingButtons() {
 }
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dragstart", e => e.preventDefault());
+var globalList;
 (function bootstrap() {
   fetch('/cart.json').then(r => r.json()).then(data => {
     const list = Array.isArray(data) ? data : (data.products || []);
+    globalList = list;
     renderProducts(list);
     updateFloating();
     renderCart();
