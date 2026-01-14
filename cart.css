@@ -600,7 +600,7 @@ label.zone-item:hover {
   font-weight: 700
 }
 
-/* small screen center modal fallback */
+/* small screen center modal fallback.*/
 @media (max-width:420px) {
   .info-popup {
     left: 50% !important;
