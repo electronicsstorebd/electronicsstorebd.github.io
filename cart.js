@@ -306,7 +306,7 @@ function buildWhatsAppMessage(singleId) {
 
 function buildPlainMessage(singleId) {
   const lines = [];
-  lines.push('আসসালামু আলাইকুম। আমি অর্ডার করতে চাই —');
+  lines.push('আসসালামু আলাইকুম। আমি অর্ডার করতে চাই — খুব আদবসহ:');
   lines.push('');
   lines.push('Order Details:');
   lines.push('');
