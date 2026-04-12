@@ -321,7 +321,8 @@ function buildPlainMessage(singleId) {
   }
   
   items.forEach((it, i) => {
-    lines.push(`${i+1}. ${it.name} × ${it.qty} — ${money(it.price * it.qty)}`);
+    lines.push(`${i+1}. ${it.name} × ${it.qty} — ${money(it.price * it.qty)}
+`);
   });
   
   const itemsTotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
