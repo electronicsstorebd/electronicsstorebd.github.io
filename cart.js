@@ -661,47 +661,62 @@ function attachToExistingButtons() {
       isSingleBuy = true;
     });
   });
-  /*
   $$('.cart').forEach(btn => {
-    // --- Mobile Touch ---
-    btn.addEventListener('touchstart', () => {
-      pressTimer = setTimeout(() => handleLongPress(btn.dataset.id), 600);
-    });
-    btn.addEventListener('touchend', () => clearTimeout(pressTimer));
-    btn.addEventListener('touchmove', () => clearTimeout(pressTimer));
-    
-    // --- Desktop Mouse ---
-    btn.addEventListener('mousedown', () => {
-      pressTimer = setTimeout(() => handleLongPress(btn.dataset.id), 600);
-    });
-    btn.addEventListener('mouseup', () => clearTimeout(pressTimer));
-    btn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+
+  let pressTimer = null;
+  let startX = 0;
+  let startY = 0;
+  let pointerId = null;
+
+  const clearPress = () => {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      pressTimer = null;
+    }
+    pointerId = null;
+  };
+
+  // Right click (desktop)
+  btn.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    handleLongPress(btn.dataset.id);
   });
-  */
-  $$('.cart').forEach(btn => {
-    let pressTimer;
-    
-    //Long Press
-    btn.addEventListener('touchstart', () => {
-      pressTimer = setTimeout(() => {
-        handleLongPress(btn.dataset.id);
-      }, 600);
-    });
-    
-    btn.addEventListener('touchend', () => {
-      clearTimeout(pressTimer);
-    });
-    
-    btn.addEventListener('touchmove', () => {
-      clearTimeout(pressTimer);
-    });
-    
-    //Mouse → Right Click
-    btn.addEventListener('contextmenu', (e) => {
-      e.preventDefault(); //browser menu বন্ধ করবে
+
+  // Pointer down (unified)
+  btn.addEventListener('pointerdown', (e) => {
+
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+
+    clearPress();
+
+    pointerId = e.pointerId;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    pressTimer = setTimeout(() => {
       handleLongPress(btn.dataset.id);
-    });
+      clearPress();
+    }, 600);
   });
+
+  // movement detect (cancel long press)
+  btn.addEventListener('pointermove', (e) => {
+    if (!pressTimer || e.pointerId !== pointerId) return;
+
+    const dx = Math.abs(e.clientX - startX);
+    const dy = Math.abs(e.clientY - startY);
+
+    if (dx > 10 || dy > 10) {
+      clearPress();
+    }
+  });
+
+  // cleanup events
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => {
+    btn.addEventListener(evt, clearPress);
+  });
+
+});
 }
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dragstart", e => e.preventDefault());
