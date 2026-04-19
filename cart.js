@@ -821,7 +821,7 @@ renderCart();
     popup.remove();
     popup = null;
   }
-
+/*
   function openPopupNear(target) {
     removePopup();
     popup = createPopup();
@@ -843,7 +843,53 @@ renderCart();
     popup.style.top = top + 'px';
     popup.style.left = left + 'px';
   }
-  
+  */
+  function openPopupNear(target) {
+  removePopup();
+  popup = createPopup();
+  document.body.appendChild(popup);
+
+  const rect = target.getBoundingClientRect();
+  const pw = popup.offsetWidth;
+  const ph = popup.offsetHeight;
+  const margin = 10;
+
+  // --- HORIZONTAL ---
+  let left = rect.right - pw;
+
+  if (left + pw > window.innerWidth - 8)
+    left = window.innerWidth - pw - 8;
+
+  if (left < 8)
+    left = 8;
+
+  // --- VERTICAL (FIXED) ---
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
+  let top;
+
+  if (spaceBelow >= ph + margin) {
+    // fits below
+    top = rect.bottom + margin;
+  } else if (spaceAbove >= ph + margin) {
+    // fits above
+    top = rect.top - ph - margin;
+  } else {
+    // doesn't fit either → choose better side
+    if (spaceBelow > spaceAbove) {
+      top = rect.bottom + margin;
+    } else {
+      top = rect.top - ph - margin;
+    }
+
+    // clamp inside viewport
+    top = Math.max(8, Math.min(top, window.innerHeight - ph - 8));
+  }
+
+  popup.style.top = top + 'px';
+  popup.style.left = left + 'px';
+  }
   document.addEventListener('click', function(e) {
     if (!popup) return;
     if (popup.contains(e.target)) return;
