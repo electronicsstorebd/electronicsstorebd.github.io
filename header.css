@@ -63,6 +63,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 25px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 nav a {
