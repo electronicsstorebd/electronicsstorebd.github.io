@@ -661,6 +661,7 @@ function attachToExistingButtons() {
       isSingleBuy = true;
     });
   });
+  /*
   $$('.cart').forEach(btn => {
     // --- Mobile Touch ---
     btn.addEventListener('touchstart', () => {
@@ -675,6 +676,31 @@ function attachToExistingButtons() {
     });
     btn.addEventListener('mouseup', () => clearTimeout(pressTimer));
     btn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+  });
+  */
+  $$('.cart').forEach(btn => {
+    let pressTimer;
+    
+    //Long Press
+    btn.addEventListener('touchstart', () => {
+      pressTimer = setTimeout(() => {
+        handleLongPress(btn.dataset.id);
+      }, 600);
+    });
+    
+    btn.addEventListener('touchend', () => {
+      clearTimeout(pressTimer);
+    });
+    
+    btn.addEventListener('touchmove', () => {
+      clearTimeout(pressTimer);
+    });
+    
+    //Mouse → Right Click
+    btn.addEventListener('contextmenu', (e) => {
+      e.preventDefault(); //browser menu বন্ধ করবে
+      handleLongPress(btn.dataset.id);
+    });
   });
 }
 document.addEventListener("contextmenu", e => e.preventDefault());
