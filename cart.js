@@ -676,28 +676,25 @@ async function startBoxPiP(boxId, fps = 2) {
     removeCallButton();
   });
 }
+function openCallBox(phone) {
+  startBoxPiP('box'); // আগে PiP
 
+  const mainBtn = document.getElementById("es-phone-send");
 
-function showCallButton() {
-  if (document.getElementById("callBtn")) return;
+  if (mainBtn.dataset.mode === "call") return;
 
-  const btn = document.createElement("a");
-  btn.id = "callBtn";
-  btn.href = "tel:+8801872605055";
-  btn.innerText = "📞 Call Now";
+  const originalHTML = mainBtn.innerHTML;
 
-  btn.style.position = "fixed";
-  btn.style.bottom = "20px";
-  btn.style.right = "20px";
-  btn.style.background = "#28a745";
-  btn.style.color = "#fff";
-  btn.style.padding = "12px 16px";
-  btn.style.borderRadius = "8px";
-  btn.style.zIndex = "9999";
-  btn.style.textDecoration = "none";
-  btn.style.fontWeight = "bold";
+  mainBtn.dataset.mode = "call";
+  mainBtn.classList.add("call-mode");
 
-  document.body.appendChild(btn);
+  mainBtn.innerHTML = `
+    Ready to Call?
+    <div class="call-box">
+        Tap to Call →
+        <a href="tel:${phone}" class="call-btn">📞 Call Now</a>
+    </div>
+  `;
 }
 
 function removeCallButton() {
