@@ -492,6 +492,34 @@ textarea {
   }
 }
 
+#es-phone-send.call-mode {
+  background: #333;
+}
+
+#es-phone-send .call-box {
+  position: absolute;
+  left: 50%;
+  top: -45px;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  font-size: 13px;
+  white-space: nowrap;
+  animation: fadeIn 0.25s ease;
+}
+
+#es-phone-send .call-btn {
+  margin-left: 8px;
+  padding: 4px 10px;
+  background: #28a745;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 .remove-btn {
   color: #ff000077;
