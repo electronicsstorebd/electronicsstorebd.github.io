@@ -564,7 +564,7 @@ $('#es-mail-send').addEventListener('click', (ev) => {
   ev.preventDefault();
   openMail(window.SINGLE_BUY || null);
 });
-
+/*
 async function startBoxPiP(boxId, fps = 2) {
 
   const box = document.getElementById(boxId);
@@ -622,6 +622,89 @@ async function startBoxPiP(boxId, fps = 2) {
   });
 
 }
+*/
+
+async function startBoxPiP(boxId, fps = 2) {
+  const box = document.getElementById(boxId);
+  
+  let video = document.getElementById("pipVideo");
+  if (!video) {
+    video = document.createElement("video");
+    video.id = "pipVideo";
+    video.muted = true;
+    video.playsInline = true;
+    video.style.display = "none";
+    document.body.appendChild(video);
+  }
+  
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  
+  // first render
+  const firstCanvas = await html2canvas(box);
+  canvas.width = firstCanvas.width;
+  canvas.height = firstCanvas.height;
+  ctx.drawImage(firstCanvas, 0, 0);
+  
+  const stream = canvas.captureStream(fps);
+  video.srcObject = stream;
+  
+  await video.play();
+  
+  try {
+    await video.requestPictureInPicture();
+    
+    // ✅ PiP চালু হলে Call button show
+    showCallButton();
+    
+  } catch (e) {
+    console.log("PiP failed:", e);
+  }
+  
+  // loop update
+  const loop = setInterval(async () => {
+    const newCanvas = await html2canvas(box);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(newCanvas, 0, 0);
+  }, 1500);
+  
+  video.addEventListener("leavepictureinpicture", () => {
+    clearInterval(loop);
+    stream.getTracks().forEach(t => t.stop());
+    
+    // PiP বন্ধ হলে button hide
+    removeCallButton();
+  });
+}
+
+
+function showCallButton() {
+  if (document.getElementById("callBtn")) return;
+
+  const btn = document.createElement("a");
+  btn.id = "callBtn";
+  btn.href = "tel:+8801872605055";
+  btn.innerText = "📞 Call Now";
+
+  btn.style.position = "fixed";
+  btn.style.bottom = "20px";
+  btn.style.right = "20px";
+  btn.style.background = "#28a745";
+  btn.style.color = "#fff";
+  btn.style.padding = "12px 16px";
+  btn.style.borderRadius = "8px";
+  btn.style.zIndex = "9999";
+  btn.style.textDecoration = "none";
+  btn.style.fontWeight = "bold";
+
+  document.body.appendChild(btn);
+}
+
+function removeCallButton() {
+  const btn = document.getElementById("callBtn");
+  if (btn) btn.remove();
+}
+
 
 document.body.addEventListener('click', (ev) => {
   const inc = ev.target.closest('.qty-inc');
