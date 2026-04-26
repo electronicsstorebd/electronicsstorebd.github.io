@@ -61,39 +61,49 @@ function cartFtouch(p) {
 function cartMake(p, product) {
   const id = String(product.ID || product.id);
   PRODUCTS[id] = product;
-  p.innerHTML += `
-      <article class="cart" data-available="${product.available}" data-id="${product.ID}" data-sold="${product.sold}" aria-labelledby="p1-name">
-        <div class="img-frame">
-          <img src="/IMG/${product.ID}.png" loading="lazy" alt="${product.name}">
+  
+  const imgId = product.ID || product.id;
+  
+  const article = document.createElement('article');
+  article.className = 'cart';
+  article.dataset.available = product.available;
+  article.dataset.id = id;
+  article.dataset.sold = product.sold;
+  
+  article.innerHTML = `
+    <div class="img-frame">
+      <img src="/IMG/${product.ID}.png" loading="lazy" alt="${product.name}">
+    </div>
+    <div class="cart-body">
+      <div class="meta">
+        <div>
+          <div class="title" id="p1-name">${product.name}</div>
+          <div class="muted" style="margin-top:6px;">${product.description}</div>
         </div>
-        <div class="cart-body">
-          <div class="meta">
-            <div>
-              <div class="title" id="p1-name">${product.name}</div>
-              <div class="muted" style="margin-top:6px;">${product.description}</div>
-            </div>
-            <div class="price">${money(product.price)}</div>
-          </div>
-          <div class="stats" aria-hidden="false">
-            <div>Sold: <strong class="info-sold"></strong></div>
-            <div>Available: <strong class="info-available"></strong></div>
-          </div>
-          <div class="progress-wrap">
-            <div class="progress-bar" aria-hidden="true"><span></span></div>
-            <div class="progress-note">— % of stock sold</div>
-          </div>
-          <div class="actions">
-            <button class="btn primary add-cart">Add to Cart</button>
-            <button class="btn ghost buy-now">Buy Now</button>
-          </div>
-          <div class="cart-footer">
-            <div>ID: ${product.ID}</div>
-            <div>${product.notice}</div>
-          </div>
-        </div>
-      </article>
-     `;
+        <div class="price">${money(product.price)}</div>
+      </div>
+      <div class="stats" aria-hidden="false">
+        <div>Sold: <strong class="info-sold"></strong></div>
+        <div>Available: <strong class="info-available"></strong></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar" aria-hidden="true"><span></span></div>
+        <div class="progress-note">— % of stock sold</div>
+      </div>
+      <div class="actions">
+        <button class="btn primary add-cart">Add to Cart</button>
+        <button class="btn ghost buy-now">Buy Now</button>
+      </div>
+      <div class="cart-footer">
+        <div>ID: ${product.ID}</div>
+        <div>${product.notice}</div>
+      </div>
+    </div>
+  `;
+  p.appendChild(article);
 }
+
+
 
 function safeload(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } }
 
@@ -468,7 +478,7 @@ async function copyToClipboard(value) {
 async function handleLongPress(id) {
   if (navigator.vibrate) navigator.vibrate(80);
   
-  const link = `https://electronicsstorebd.github.io/SEARCH?id=${id}`;
+  const link = `https://estorebd.github.io/SEARCH?id=${id}`;
   if (navigator.share) {
     try {
       await navigator.share({ title: 'Product Link', url: link });
@@ -564,67 +574,14 @@ $('#es-mail-send').addEventListener('click', (ev) => {
   ev.preventDefault();
   openMail(window.SINGLE_BUY || null);
 });
-/*
-async function startBoxPiP(boxId, fps = 2) {
-
-  const box = document.getElementById(boxId);
-
-  function boxToImage() {
-    const xml = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="${box.offsetWidth}" height="${box.offsetHeight}">
-        <foreignObject width="100%" height="100%">
-          ${new XMLSerializer().serializeToString(box)}
-        </foreignObject>
-      </svg>`;
-    const img = new Image();
-    img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
-    return img;
-  }
-
-  let video = document.getElementById("pipVideo");
-  if (!video) {
-    video = document.createElement("video");
-    video.id = "pipVideo";
-    video.muted = true;
-    video.playsInline = true;
-    video.style.display = "none";
-    document.body.appendChild(video);
-  }
-
-  const off = document.createElement("canvas");
-  const ctx = off.getContext("2d");
-
-  const firstImg = boxToImage();
-  await new Promise(res => firstImg.onload = res);
-
-  off.width = firstImg.width;
-  off.height = firstImg.height;
-  ctx.drawImage(firstImg, 0, 0);
-
-  const stream = off.captureStream(fps);
-  video.srcObject = stream;
-  await video.play();
-  video.requestPictureInPicture().catch(() => {});
-  window.location.href = "tel:+8801872605055";
-
-  // Continue updating PiP
-  const loop = setInterval(() => {
-    const img = boxToImage();
-    img.onload = () => {
-      ctx.clearRect(0, 0, off.width, off.height);
-      ctx.drawImage(img, 0, 0);
-    };
-  }, 1500);
-
-  video.addEventListener("leavepictureinpicture", () => {
-    clearInterval(loop);
-    stream.getTracks().forEach(t => t.stop());
-  });
-
-}
-*/
 
 async function startBoxPiP(boxId, fps = 2) {
+  const mainBtn = document.getElementById("es-phone-send");
+  
+  mainBtn.classList.add("loading");
+  
+  await new Promise(resolve => setTimeout(resolve, 0));
+  
   const box = document.getElementById(boxId);
   
   let video = document.getElementById("pipVideo");
@@ -640,8 +597,8 @@ async function startBoxPiP(boxId, fps = 2) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   
-  // first render
   const firstCanvas = await html2canvas(box);
+  
   canvas.width = firstCanvas.width;
   canvas.height = firstCanvas.height;
   ctx.drawImage(firstCanvas, 0, 0);
@@ -653,15 +610,14 @@ async function startBoxPiP(boxId, fps = 2) {
   
   try {
     await video.requestPictureInPicture();
-    
-    // ✅ PiP চালু হলে Call button show
-    showCallButton();
-    
   } catch (e) {
-    console.log("PiP failed:", e);
+    //console.log("PiP failed:", e);
   }
   
-  // loop update
+  mainBtn.classList.remove("loading");
+  
+  injectCallBox();
+  
   const loop = setInterval(async () => {
     const newCanvas = await html2canvas(box);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -671,37 +627,82 @@ async function startBoxPiP(boxId, fps = 2) {
   video.addEventListener("leavepictureinpicture", () => {
     clearInterval(loop);
     stream.getTracks().forEach(t => t.stop());
-    
-    // PiP বন্ধ হলে button hide
-    removeCallButton();
+    restoreCallBox();
   });
 }
-function openCallBox(phone) {
-  startBoxPiP('box'); // আগে PiP
 
+async function closePiPVideo() {
+  const video = document.getElementById("pipVideo");
+  if (!video) return;
+  
+  try {
+    if (document.pictureInPictureElement === video) {
+      await document.exitPictureInPicture();
+    }
+  } catch (e) {
+    //console.log("exit PiP failed:", e);
+  }
+  
+  try {
+    video.pause();
+    if (video.srcObject) {
+      video.srcObject.getTracks().forEach(t => t.stop());
+      video.srcObject = null;
+    }
+    video.removeAttribute("src");
+    video.load();
+  } catch (e) {
+    //console.log("video cleanup failed:", e);
+  }
+}
+
+function injectCallBox() {
   const mainBtn = document.getElementById("es-phone-send");
-
-  if (mainBtn.dataset.mode === "call") return;
-
-  const originalHTML = mainBtn.innerHTML;
-
+  if (!mainBtn || mainBtn.dataset.mode === "call") return;
+  
+  mainBtn.dataset.original = mainBtn.innerHTML;
   mainBtn.dataset.mode = "call";
   mainBtn.classList.add("call-mode");
-
+  document.body.classList.add("call-modal-open");
+  
   mainBtn.innerHTML = `
-    Ready to Call?
-    <div class="call-box">
-        Tap to Call →
-        <a href="tel:${phone}" class="call-btn">📞 Call Now</a>
+    <div class="call-box" onclick="event.stopPropagation()">
+      <button type="button" class="close-btn" aria-label="Close">×</button>
+      <div class="call-top">
+        <div class="call-title">Ready to call</div>
+        <div class="call-subtitle">Tap the button to start the call</div>
+      </div>
+      <a href="tel:${CFG.WHATSAPP}" class="call-btn"> Call Now</a>
     </div>
   `;
+  
+  const closeBtn = mainBtn.querySelector(".close-btn");
+  closeBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    await closePiPVideo();
+    await restoreCallBox();
+  });
+  
+  const callBtn = mainBtn.querySelector(".call-btn");
+  callBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    restoreCallBox();
+    if (!isSingleBuy) clearCart();
+    else !isSingleBuy;
+  });
 }
 
-function removeCallButton() {
-  const btn = document.getElementById("callBtn");
-  if (btn) btn.remove();
+async function restoreCallBox() {
+  const mainBtn = document.getElementById("es-phone-send");
+  if (!mainBtn || mainBtn.dataset.mode !== "call") return;
+  
+  mainBtn.innerHTML = mainBtn.dataset.original || mainBtn.innerHTML;
+  mainBtn.classList.remove("call-mode");
+  delete mainBtn.dataset.mode;
+  delete mainBtn.dataset.original;
+  
+  document.body.classList.remove("call-modal-open");
 }
-
 
 document.body.addEventListener('click', (ev) => {
   const inc = ev.target.closest('.qty-inc');
@@ -714,90 +715,97 @@ document.body.addEventListener('click', (ev) => {
 
 function attachToExistingButtons() {
   $$('.add-cart').forEach(btn => {
-    if (btn.dataset.esAttached) return;
-    btn.dataset.esAttached = '1';
-    btn.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      const cart = btn.closest('.cart');
-      const id = cart.dataset.id;
-      if (!id) { showToast('ID NOT FOUND'); return; }
-      const prod = PRODUCTS[id] || { ID: id, name: cart.querySelector('.title')?.textContent?.trim() || ('Product ' + id), price: Number((cart.querySelector('.price')?.textContent || '').replace(/[^\d.]/g, '')) || 0, available: null };
-      addToCartFromProduct(prod);
-    });
+  if (btn.dataset.esAttached) return;
+  btn.dataset.esAttached = '1';
+  btn.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const cart = btn.closest('.cart');
+    const id = cart.dataset.id;
+    if (!id) { showToast('ID NOT FOUND'); return; }
+    const prod = PRODUCTS[id] || {
+      ID: id,
+      name: cart.querySelector('.title')?.textContent?.trim() || ('Product ' + id),
+      price: Number((cart.querySelector('.price')?.textContent || '').replace(/[^\d.]/g, '')) || 0,
+      available: null
+    };
+    addToCartFromProduct(prod);
   });
-  $$('.buy-now').forEach(btn => {
-    if (btn.dataset.esAttached) return;
-    btn.dataset.esAttached = '1';
-    btn.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      const cart = btn.closest('.cart');
-      const id = cart.dataset.id;
-      if (!id) { showToast('ID NOT FOUND'); return; }
-      window.SINGLE_BUY = id;
-      populateCheckout(id);
-      $('#es-checkout-overlay').style.display = 'flex';
-      $('#es-checkout-overlay').classList.add('show');
-      runAutoShowTooltip(button, showTooltip, hideTooltip);
-      isSingleBuy = true;
-    });
-  });
-  $$('.cart').forEach(btn => {
-
-  let pressTimer = null;
-  let startX = 0;
-  let startY = 0;
-  let pointerId = null;
-
-  const clearPress = () => {
-    if (pressTimer) {
-      clearTimeout(pressTimer);
-      pressTimer = null;
-    }
-    pointerId = null;
-  };
-
-  // Right click (desktop)
-  btn.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    handleLongPress(btn.dataset.id);
-  });
-
-  // Pointer down (unified)
-  btn.addEventListener('pointerdown', (e) => {
-
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-
-    clearPress();
-
-    pointerId = e.pointerId;
-    startX = e.clientX;
-    startY = e.clientY;
-
-    pressTimer = setTimeout(() => {
-      handleLongPress(btn.dataset.id);
-      clearPress();
-    }, 600);
-  });
-
-  // movement detect (cancel long press)
-  btn.addEventListener('pointermove', (e) => {
-    if (!pressTimer || e.pointerId !== pointerId) return;
-
-    const dx = Math.abs(e.clientX - startX);
-    const dy = Math.abs(e.clientY - startY);
-
-    if (dx > 10 || dy > 10) {
-      clearPress();
-    }
-  });
-
-  // cleanup events
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => {
-    btn.addEventListener(evt, clearPress);
-  });
-
 });
+$$('.buy-now').forEach(btn => {
+  if (btn.dataset.esAttached) return;
+  btn.dataset.esAttached = '1';
+  btn.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const cart = btn.closest('.cart');
+    const id = cart.dataset.id;
+    if (!id) { showToast('ID NOT FOUND'); return; } window.SINGLE_BUY = id;
+    populateCheckout(id);
+    $('#es-checkout-overlay').style.display = 'flex';
+    $('#es-checkout-overlay').classList.add('show');
+    runAutoShowTooltip(button, showTooltip, hideTooltip);
+    isSingleBuy = true;
+  });
+});
+    
+
+  $$('.cart').forEach(btn => {
+    
+    let pressTimer = null;
+    let startX = 0;
+    let startY = 0;
+    let pointerId = null;
+    
+    const clearPress = () => {
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+      }
+      pointerId = null;
+    };
+    
+    // Right click (desktop)
+    btn.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      handleLongPress(btn.dataset.id);
+    });
+    
+    // Pointer down (unified)
+    btn.addEventListener('pointerdown', (e) => {
+      
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      
+      clearPress();
+      
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      
+      pressTimer = setTimeout(() => {
+        handleLongPress(btn.dataset.id);
+        clearPress();
+      }, 600);
+    });
+    
+    // movement detect (cancel long press)
+    btn.addEventListener('pointermove', (e) => {
+      if (!pressTimer || e.pointerId !== pointerId) return;
+      
+      const dx = Math.abs(e.clientX - startX);
+      const dy = Math.abs(e.clientY - startY);
+      
+      if (dx > 10 || dy > 10) {
+        clearPress();
+      }
+    });
+    
+    // cleanup events
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => {
+      btn.addEventListener(evt, clearPress);
+    });
+    
+  });
 }
+
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("dragstart", e => e.preventDefault());
 var globalList;
@@ -815,8 +823,17 @@ var globalList;
 updateFloating();
 renderCart();
 
+document.querySelector('.summary > div:nth-child(1)').addEventListener('click', () => {
+  $('#es-checkout-overlay').style.display = 'none';
+  $('#es-checkout-overlay').classList.remove('show');
+  $('#es-cart-overlay').style.display = 'flex';
+  $('#es-cart-overlay').classList.add('show');
+  if (isSingleBuy) !isSingleBuy;
+});
+
 (function() {
   const infoBtn = document.getElementById('infoBtn');
+  const clickOwner = document.querySelector('.summary > div:nth-child(2)');
   let popup = null;
   let lastSelected = null;
   
@@ -893,7 +910,10 @@ renderCart();
     }
     removePopup();
   }
-  function onKeyDown(e) { if (e.key === 'Escape') removePopup(); }
+  
+  function onKeyDown(e) {
+    if (e.key === 'Escape') removePopup();
+  }
   
   function removePopup() {
     if (!popup) return;
@@ -901,13 +921,16 @@ renderCart();
     popup.remove();
     popup = null;
   }
-/*
+  
   function openPopupNear(target) {
     removePopup();
     popup = createPopup();
     document.body.appendChild(popup);
     
     const rect = target.getBoundingClientRect();
+    const header = document.querySelector('.header');
+    const headerH = header ? header.offsetHeight : 0;
+    
     const pw = popup.offsetWidth;
     const ph = popup.offsetHeight;
     const margin = 10;
@@ -915,64 +938,37 @@ renderCart();
     let top = rect.bottom + margin;
     let left = rect.right - pw;
     
+    const minTop = headerH + margin;
+    if (top < minTop) top = minTop;
+    
     if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
     if (left < 8) left = 8;
+    
     if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
-    if (top < 8) top = 8;
+    if (top < minTop) top = minTop;
     
     popup.style.top = top + 'px';
     popup.style.left = left + 'px';
   }
-  */
-  function openPopupNear(target) {
-  removePopup();
-  popup = createPopup();
-  document.body.appendChild(popup);
-
-  const rect = target.getBoundingClientRect();
-  const header = document.querySelector('.header');
-  const headerH = header ? header.offsetHeight : 0;
-
-  const pw = popup.offsetWidth;
-  const ph = popup.offsetHeight;
-  const margin = 10;
-
-  let top = rect.bottom + margin;
-  let left = rect.right - pw;
-
-  // header safe zone fix
-  const minTop = headerH + margin;
-  if (top < minTop) top = minTop;
-
-  if (left + pw > window.innerWidth - 8)
-    left = window.innerWidth - pw - 8;
-
-  if (left < 8) left = 8;
-
-  if (top + ph > window.innerHeight - 8)
-    top = rect.top - ph - margin;
-
-  if (top < minTop)
-    top = minTop;
-
-  popup.style.top = top + 'px';
-  popup.style.left = left + 'px';
-}
-
   
   document.addEventListener('click', function(e) {
     if (!popup) return;
     if (popup.contains(e.target)) return;
-    if (infoBtn.contains(e.target)) return;
+    if (clickOwner && clickOwner.contains(e.target)) return;
     removePopup();
   });
   
-  infoBtn?.addEventListener('click', function(e) {
-    if (popup) { removePopup(); return; }
+  clickOwner?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (popup) {
+      removePopup();
+      return;
+    }
     openPopupNear(infoBtn);
   });
   
 })();
+
 
 document.addEventListener("DOMContentLoaded", () => {
   
