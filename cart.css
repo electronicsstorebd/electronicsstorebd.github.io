@@ -492,33 +492,115 @@ textarea {
   }
 }
 
-#es-phone-send.call-mode {
-  background: #333;
+/* call popup inside */
+#es-phone-send {
+  position: relative;
 }
 
+/* loading state */
+#es-phone-send.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+#es-phone-send.loading::after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+/* modal state */
+#es-phone-send.call-mode {
+  z-index: 9999;
+}
+
+/* disable scroll background */
+body.call-modal-open {
+  overflow: hidden;
+}
+
+/* call popup */
 #es-phone-send .call-box {
   position: absolute;
   left: 50%;
-  top: -45px;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #000;
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  font-size: 13px;
-  white-space: nowrap;
-  animation: fadeIn 0.25s ease;
+  top: -12px;
+  transform: translate(-50%, -100%);
+  min-width: 210px;
+  background: rgba(255, 255, 255, 0.98);
+  color: #111;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  animation: callPop 0.18s ease-out;
 }
 
+/* text */
+#es-phone-send .call-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#es-phone-send .call-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* button */
 #es-phone-send .call-btn {
-  margin-left: 8px;
-  padding: 4px 10px;
-  background: #28a745;
+  display: block;
+  margin-top: 10px;
+  padding: 9px 12px;
+  width: 100%;
+  background: #1f9d55;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* close button */
+#es-phone-send .close-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background: #eee;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes callPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
 }
 
 .remove-btn {
@@ -528,19 +610,20 @@ textarea {
 }
 
 .close {
-  background: #0000002D;
+  background: #fff;
 }
 
 .showB {
   display: block;
   height: 60vh;
-  background: url('/IMG/No_results_found_for_search.png') no-repeat center/ contain;
+  background: url('/IMG/No_results_found_for_search.webp') no-repeat center/ contain;
   opacity: .1;
 }
 
 .dInfo {
   color: #000;
   padding: 3px 8px 3px 8px;
+  transform: translateY(2px);
 }
 
 /* Floating popup created by JS */
@@ -753,9 +836,11 @@ label.zone-item:hover {
   0% {
     margin-bottom: 0px;
   }
+  
   50% {
     margin-bottom: 50px;
   }
+  
   100% {
     margin-bottom: 0px;
   }
@@ -765,9 +850,11 @@ label.zone-item:hover {
   0% {
     margin-bottom: 0px;
   }
+  
   50% {
     margin-bottom: 50px;
   }
+  
   100% {
     margin-bottom: 0px;
   }
@@ -777,9 +864,11 @@ label.zone-item:hover {
   0% {
     margin-bottom: 0px;
   }
+  
   50% {
     margin-bottom: 50px;
   }
+  
   100% {
     margin-bottom: 0px;
   }
@@ -789,9 +878,11 @@ label.zone-item:hover {
   0% {
     margin-bottom: 0px;
   }
+  
   50% {
     margin-bottom: 50px;
   }
+  
   100% {
     margin-bottom: 0px;
   }
@@ -801,10 +892,38 @@ label.zone-item:hover {
   0% {
     margin-bottom: 0px;
   }
+  
   50% {
     margin-bottom: 50px;
   }
+  
   100% {
     margin-bottom: 0px;
   }
+}
+
+#es-back-to-cart,
+#es-save-address {
+  padding: 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  border: 1px solid #ddd
+}
+
+#es-save-address {
+  order: 2;
+}
+
+#es-back-to-cart {
+  order: 1;
+}
+
+.summary>div:nth-of-type(2) , .summary>div:nth-of-type(1) {
+  background: #F1F1F1;
+  border-radius: 3px;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 26px;
+  text-transform: capitalize;
 }
